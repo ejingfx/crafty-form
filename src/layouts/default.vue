@@ -1,5 +1,7 @@
 <template>
   <div>
+    <AppSidebar />
+    <AppHeader />
     <v-main>
       <v-card
         class="pa-4 bg-transparent position-relative"

@@ -2,10 +2,20 @@ import type { App } from 'vue'
 
 export default {
   install (app: App) {
-    const services = {
+    const auth = {
       login: '/auth/login',
       logout: '/auth/logout',
       me: '/auth/me',
+    }
+    const pages = {}
+
+    const services = {
+      ...auth,
+      ...pages,
+      detailPages: [
+        '/patients/:id',
+        '/departments/:id',
+      ],
     }
 
     app.config.globalProperties.$service = services

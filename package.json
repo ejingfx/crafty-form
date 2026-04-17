@@ -8,7 +8,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force",
+    "tsc": "vue-tsc --build --force",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "mcp": "ruler apply",
@@ -17,7 +17,9 @@
   "dependencies": {
     "@fontsource/roboto": "^5.2.10",
     "@mdi/font": "7.4.47",
+    "@types/lodash": "^4.17.24",
     "axios": "^1.15.0",
+    "lodash": "^4.18.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.30",
     "vue-i18n": "^11.3.0",

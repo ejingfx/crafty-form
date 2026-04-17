@@ -3,7 +3,7 @@ import type { Workspace } from '@/types/workspace'
 
 export interface User {
   id: string
-  name: string
+  username: string
   email: string
   role: Role
   workspace: Workspace
