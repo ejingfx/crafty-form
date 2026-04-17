@@ -1,8 +1,6 @@
 <template>
-  <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
+  <v-app id="inspire" class="bg-athens-gray">
+    <router-view />
   </v-app>
 </template>
 

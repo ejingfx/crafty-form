@@ -6,14 +6,23 @@
 
 // Composables
 import { createVuetify } from 'vuetify'
-// Styles
-import '@mdi/font/css/materialdesignicons.css'
-
 import 'vuetify/styles'
+import '@mdi/font/css/materialdesignicons.css'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   theme: {
-    defaultTheme: 'system',
+    defaultTheme: 'light',
+    themes: {
+      light: {
+        colors: {
+          'athens-gray': '#f5f5f7',
+          'bali-hai': '#8b97ab',
+          'cadet-blue': '#a4aebd',
+          'mine-shaft': '#363636',
+          'pizazz': '#FB8C00',
+        },
+      },
+    },
   },
 })

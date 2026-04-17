@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    INDEX
+    DASHBOARD
   </v-row>
 </template>
 
