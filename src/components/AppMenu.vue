@@ -7,7 +7,7 @@
     >
 
       <template v-slot:activator="{ props }">
-        <v-avatar v-bind="props">
+        <v-avatar v-bind="props" size="small">
           <v-img src="@/assets/no-image.jpg"></v-img>
         </v-avatar>
       </template>
@@ -29,35 +29,19 @@
 
         <v-divider></v-divider>
 
+        <!-- TODO: LOOP HERE -->
         <v-list-item
+          v-for="(item, i) in menuItems"
+          :key="i"
           class="justify-space-between"
           dense
           link
+          :to="item.to"
         >
           <template v-slot:prepend>
-            <v-icon icon="true">mdi-account</v-icon>
+            <v-icon icon="true">{{ item.icon }}</v-icon>
           </template>
-          <v-list-item-title class="font-weight-regular">PROFILE</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item
-          dense
-          link
-        >
-          <template v-slot:prepend>
-            <v-icon icon="true">mdi-account-circle-outline</v-icon>
-          </template>
-          <v-list-item-title class="font-weight-regular">ACCOUNT</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item
-          dense
-          link
-        >
-          <template v-slot:prepend>
-            <v-icon icon="true">mdi-cog-outline</v-icon>
-          </template>
-          <v-list-item-title class="font-weight-regular">SETTINGS</v-list-item-title>
+          <v-list-item-title class="font-weight-regular">{{ item.title }}</v-list-item-title>
         </v-list-item>
 
         <v-divider></v-divider>
@@ -78,10 +62,14 @@
 </template>
 
 <script lang="ts" setup>
+  import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { useAxios } from '../composables/useAxios'
   import { useService } from '../composables/useService'
   import { useAuthStore } from '../stores/auth'
+  import { useMenuStore } from '../stores/menu'
+  const menuList = useMenuStore()
+  const menuItems = ref(menuList.$state.menu)
 
   const router = useRouter()
   const service = useService()

@@ -52,16 +52,13 @@
 <script lang="ts" setup>
   import { storeToRefs } from 'pinia'
   import { ref } from 'vue'
-  import { useAppStore } from '../stores/app'
+  import { useDrawerStore } from '../stores/drawer'
+  import { useMenuStore } from '../stores/menu'
 
-  const appStore = useAppStore()
+  const appStore = useDrawerStore()
   const { drawer } = storeToRefs(appStore)
-  const menuItems = ref([
-    { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/dashboard' },
-    { title: 'Users', icon: 'mdi-account-group', to: '/users' },
-  ])
-  const systemItems = ref([
-    { title: 'Account', icon: 'mdi-account-circle', to: '/account' },
-    { title: 'Settings', icon: 'mdi-cog', to: '/settings' },
-  ])
+  const menuList = useMenuStore()
+
+  const menuItems = ref(menuList.$state.sidebar)
+  const systemItems = ref(menuList.$state.system)
 </script>

@@ -1,7 +1,7 @@
 import type { DrawerState } from '@/types/drawer'
 import { defineStore } from 'pinia'
 
-export const useAppStore = defineStore('app', {
+export const useDrawerStore = defineStore('drawer', {
   state: (): DrawerState => ({
     drawer: true,
     dataDetailActiveProps: {},

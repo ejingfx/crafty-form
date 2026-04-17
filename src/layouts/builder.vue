@@ -1,7 +1,6 @@
 <template>
   <div>
-    <AppSidebar />
-    <AppDataDrawer></AppDataDrawer>
+    <AppDataDrawer />
     <AppHeader />
     <v-main>
       <v-card

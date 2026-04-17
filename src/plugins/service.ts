@@ -13,8 +13,7 @@ export default {
       ...auth,
       ...pages,
       detailPages: [
-        '/patients/:id',
-        '/departments/:id',
+        '/detail/:id',
       ],
     }
 

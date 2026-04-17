@@ -25,7 +25,6 @@ export const useAuthStore = defineStore('auth', {
 
       const user = localStorage.getItem('user')
       this.user = user ? JSON.parse(user) as User : null
-      console.log('store...', this.user)
     },
     setAuth (payload: AuthState): void {
       this.token = payload.token

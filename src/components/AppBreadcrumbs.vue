@@ -43,7 +43,7 @@
       .map((item: string) => item)
   }
 
-  async function formatItems(items: Crumbs): Promise<CrumbItem[]> {
+  async function formatItems (items: Crumbs): Promise<CrumbItem[]> {
     // const isDetailPage = await service?.detailPages.includes(path.value)
 
     //  TODO
@@ -79,7 +79,6 @@
       path.value = route.matched[route.matched?.length - 1].path
       const items = transformItems(route)
       crumbs.value = await formatItems(items)
-      console.log('watch', items)
     },
     { immediate: true, deep: true },
   )

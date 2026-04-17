@@ -12,10 +12,16 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppBreadcrumbs: typeof import('./src/components/AppBreadcrumbs.vue')['default']
+    AppDataDrawer: typeof import('./src/components/AppDataDrawer.vue')['default']
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     AppMenu: typeof import('./src/components/AppMenu.vue')['default']
     AppNavigationDrawer: typeof import('./src/components/AppNavigationDrawer.vue')['default']
     AppSidebar: typeof import('./src/components/AppSidebar.vue')['default']
+    BuilderContent: typeof import('./src/components/BuilderContent.vue')['default']
+    BuilderElementTab: typeof import('./src/components/BuilderElementTab.vue')['default']
+    BuilderFieldsTab: typeof import('./src/components/BuilderFieldsTab.vue')['default']
+    BuilderSearch: typeof import('./src/components/BuilderSearch.vue')['default']
+    BuilderSearchElement: typeof import('./src/components/BuilderSearchElement.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     LoginForm: typeof import('./src/components/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
