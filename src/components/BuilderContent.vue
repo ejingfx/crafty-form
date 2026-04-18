@@ -6,14 +6,7 @@
     :min-width="500"
   >
     <template v-if="list.length > 0">
-      <v-list lines="one">
-        <v-list-item
-          subtitle="Some crafty form"
-          title="Awesome Form"
-        />
-      </v-list>
       <v-list>
-
         <draggable
           class="list-group"
           :disabled="!enabled"
@@ -22,14 +15,15 @@
           :list="list"
           :move="checkMove"
           @end="checkOrder"
-          @start="dragging = true"
+          @start="draggingInfo"
         >
           <template #item="{ element }">
             <div class="list-group-item" :class="{ 'not-draggable': !enabled }">
               <v-list-item class="bg-white" dense>
-                {{ element.name }}
+                <FieldNumber v-if="element.type === 'number'" :data="element" />
+                <FieldTextarea v-else-if="element.type === 'textarea'" :data="element" />
+                <FieldText v-else :data="element" />
               </v-list-item>
-              <v-divider />
             </div>
           </template>
         </draggable>
@@ -50,24 +44,12 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
   import draggable from 'vuedraggable'
+  import { useBuilderStore } from '../stores/builder'
 
+  const builderStore = useBuilderStore()
   const enabled = ref(true)
   const dragging = ref(false)
-  const message = ref([
-    'vue.draggable',
-    'draggable',
-    'component',
-    'for',
-    'vue.js 2.0',
-    'based',
-    'on',
-    'Sortablejs',
-  ])
-  const mapped = message.value
-    .map((name, index) => {
-      return { name, order: index + 1 }
-    })
-  const list = ref(mapped)
+  const list = builderStore.$state.elements
   function draggingInfo () {
     return dragging.value ? 'under drag' : ''
   }
@@ -77,6 +59,6 @@
   }
   function checkOrder () {
     dragging.value = false
-    console.log('end', list.value)
+    // console.log('end', list)
   }
 </script>

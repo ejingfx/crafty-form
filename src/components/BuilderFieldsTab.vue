@@ -1,31 +1,31 @@
 <template>
   <v-sheet clasas="elevation-0 pa-1" color="transparent">
-    <v-tabs
-      v-model="tab"
-      grow
-    >
-      <v-tab size="small" value="fields">Fields</v-tab>
-      <v-tab size="small" value="page">Page</v-tab>
-    </v-tabs>
+    <div v-show="showSearchFilterGroup" class="d-flex align-center flex-column">
+      <v-btn-group
+        density="compact"
+        divided
+        variant="tonal"
+      >
+        <template v-for="(item, i) in builder.fieldGroupData" :key="i">
+          <v-btn
+            :class="builderStore.getFilterGroup === item.type ? 'text-pizazz' : ''"
+            color="white"
+            @click="builder.setFilterGroup(item.type)"
+          >{{ item.group }}</v-btn>
+        </template>
+      </v-btn-group>
+    </div>
 
-    <v-divider />
-
-    <v-tabs-window
-      v-model="tab"
-      class="bg-transparent"
-    >
-      <v-tabs-window-item value="fields">
-        <v-sheet class="pa-5 bg-transparent">Fields</v-sheet>
-      </v-tabs-window-item>
-      <v-tabs-window-item class="bg-transparent" value="page">
-        <v-sheet class="pa-5 bg-transparent">Page</v-sheet>
-      </v-tabs-window-item>
-    </v-tabs-window>
+    <BuilderFieldsList />
   </v-sheet>
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import type { FieldGroup } from '../types/builder'
+  import { useBuilder } from '../composables/useBuilder'
+  import { useBuilderStore } from '../stores/builder'
 
-  const tab = ref('fields')
+  const builderStore = useBuilderStore()
+  const builder = useBuilder()
+  const showSearchFilterGroup = builder.showSearchFilterGroup
 </script>
