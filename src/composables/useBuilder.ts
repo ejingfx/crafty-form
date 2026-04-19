@@ -4,6 +4,7 @@ import type {
 } from '@/types/builder'
 import type {
   BuilderElementData,
+  Element,
   FieldDraggableList,
 } from '@/types/fields'
 import { computed } from 'vue'
@@ -24,9 +25,10 @@ export function useBuilder () {
     builderStore.add(element)
   }
   const remove = (index: number) => {
-    // const element = loadElementInit(number)[0].element
     builderStore.remove(index)
-    // console.log('index', index)
+  }
+  const clone = (element: Element, index: number) => {
+    builderStore.clone(element, index)
   }
   const setFilterGroup = (type: FieldGroup) => {
     builderStore.setFilterGroup(type)
@@ -113,6 +115,7 @@ export function useBuilder () {
   return {
     add,
     remove,
+    clone,
     allFieldGroup,
     fieldGroupData,
     setFilterGroup,

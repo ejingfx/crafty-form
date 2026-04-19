@@ -32,10 +32,11 @@
                       <v-btn
                         class="custom-draggable-btn"
                         color="pizazz"
-                        icon="mdi-cog"
+                        icon="mdi-content-copy"
                         :rounded="false"
                         size="x-small"
                         variant="text"
+                        @click="builder.clone(element, index)"
                       />
                       <v-divider vertical />
                       <v-btn
@@ -51,7 +52,7 @@
                     </div>
                   </div>
 
-                  <v-list-item class="bg-white relative" dense>
+                  <v-list-item class="bg-transparent relative" dense>
                     <FieldNumber v-if="element.type === 'number'" :data="element" />
                     <FieldTextarea v-else-if="element.type === 'textarea'" :data="element" />
                     <StructureContainer v-else-if="element.type === 'container'" :data="element" />

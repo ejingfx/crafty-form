@@ -1,7 +1,7 @@
 <template>
   <v-card flat>
     <v-container
-      class="d-flex flex-column justify-center align-center bg-athens-gray"
+      class="d-flex flex-column justify-center align-center bg-athens-gray mb-6"
     >
       <v-icon icon="mdi-select-drag" size="large"></v-icon>
       <v-list class="bg-transparent" flat>
@@ -12,5 +12,5 @@
 </template>
 
 <script lang="ts" setup>
-  const props = defineProps(['data'])
+  // const props = defineProps(['data'])
 </script>

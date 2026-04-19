@@ -10,19 +10,19 @@
   position: relative;
   width: 100%;
 
-  // &::before {
-  //   position: absolute;
-  //   top: 4px;
-  //   left: 14px;
-  //   content: '';
-  //   width: calc(100% - 30px);
-  //   height: 100%;
-  //   z-index: 2;
-  //   border: 1px solid rgb(var(--v-theme-pizazz));
-  //   opacity: 1;
-  //   transition: opacity 100ms ease 100ms;
-  //   pointer-events: none;
-  // }
+  &::before {
+    position: absolute;
+    top: 4px;
+    left: 14px;
+    content: '';
+    width: calc(100% - 30px);
+    height: 100%;
+    z-index: 2;
+    border: 1px solid rgb(var(--v-theme-pizazz));
+    opacity: 0;
+    transition: opacity 100ms ease 100ms;
+    pointer-events: none;
+  }
 
   &:hover {
     .custom-draggable-actions {

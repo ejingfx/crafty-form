@@ -6,6 +6,7 @@ import type { Element } from '@/types/fields'
 import _ from 'lodash'
 import { defineStore } from 'pinia'
 import { v4 as uuidv4 } from 'uuid'
+import { toRaw } from 'vue'
 
 export const useBuilderStore = defineStore('builder', {
   state: (): BuilderData => ({
@@ -27,6 +28,11 @@ export const useBuilderStore = defineStore('builder', {
     },
     remove (payload: number) {
       _.pullAt(this.elements, [payload])
+    },
+    clone (payload: Element, index: number) {
+      const cloned = structuredClone(toRaw(payload))
+      cloned.key = uuidv4()
+      this.elements.splice(index + 1, 0, cloned)
     },
     setFilterGroup (payload: FieldGroup) {
       this.filterGroup = payload
