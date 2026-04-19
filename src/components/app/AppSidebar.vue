@@ -52,8 +52,8 @@
 <script lang="ts" setup>
   import { storeToRefs } from 'pinia'
   import { ref } from 'vue'
-  import { useDrawerStore } from '../stores/drawer'
-  import { useMenuStore } from '../stores/menu'
+  import { useDrawerStore } from '../../stores/drawer'
+  import { useMenuStore } from '../../stores/menu'
 
   const appStore = useDrawerStore()
   const { drawer } = storeToRefs(appStore)

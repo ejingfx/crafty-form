@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { useBuilder } from '../composables/useBuilder'
+  import { useBuilder } from '../../composables/useBuilder'
 
   const builder = useBuilder()
   const getGroupFiltered = builder.getGroupFiltered

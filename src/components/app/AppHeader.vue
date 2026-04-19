@@ -41,7 +41,7 @@
   import type { RouteLocationNormalized } from 'vue-router'
   import { ref, watch } from 'vue'
   import { useRoute } from 'vue-router'
-  import { useDrawerStore } from '../stores/drawer'
+  import { useDrawerStore } from '../../stores/drawer'
 
   const appStore = useDrawerStore()
   const route = useRoute()

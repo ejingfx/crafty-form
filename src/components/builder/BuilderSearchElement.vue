@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { useBuilderStore } from '../stores/builder'
+  import { useBuilderStore } from '../../stores/builder'
 
   const builderStore = useBuilderStore()
 </script>

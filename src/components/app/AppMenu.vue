@@ -64,10 +64,10 @@
 <script lang="ts" setup>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
-  import { useAxios } from '../composables/useAxios'
-  import { useService } from '../composables/useService'
-  import { useAuthStore } from '../stores/auth'
-  import { useMenuStore } from '../stores/menu'
+  import { useAxios } from '../../composables/useAxios'
+  import { useService } from '../../composables/useService'
+  import { useAuthStore } from '../../stores/auth'
+  import { useMenuStore } from '../../stores/menu'
   const menuList = useMenuStore()
   const menuItems = ref(menuList.$state.menu)
 

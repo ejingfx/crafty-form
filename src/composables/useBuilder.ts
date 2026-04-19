@@ -3,80 +3,30 @@ import type {
   FieldGroupData,
 } from '@/types/builder'
 import type {
-  Element,
+  BuilderElementData,
   FieldDraggableList,
-  FieldType,
 } from '@/types/fields'
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
+import { useElement } from '../composables/useElement'
 
 export function useBuilder () {
   const builderStore = useBuilderStore()
-
-  type fieldElement = {
-    type: FieldType
-    element: Element
-  }
-  type fieldElementData = fieldElement[]
-
-  const initElements: fieldElementData = [
-    {
-      type: 'number',
-      element: {
-        type: 'number',
-        properties: {
-          label: 'Number',
-          description: '',
-          placeholder: '',
-        },
-        layout: {
-          column: 12,
-          size: 'default',
-          position: 'left',
-        },
-      },
-    },
-    {
-      type: 'text',
-      element: {
-        type: 'text',
-        properties: {
-          label: 'Short text',
-          description: '',
-          placeholder: '',
-        },
-        layout: {
-          column: 12,
-          size: 'default',
-          position: 'left',
-        },
-      },
-    },
-    {
-      type: 'textarea',
-      element: {
-        type: 'textarea',
-        properties: {
-          label: 'Long text',
-          description: '',
-          placeholder: '',
-        },
-        layout: {
-          column: 12,
-          size: 'default',
-          position: 'left',
-        },
-      },
-    },
-  ]
+  const elements = useElement()
 
   const loadElementInit = (type: string) => {
-    return initElements.filter((el: fieldElement) => el.type === type)
+    const initElements = elements.initElements
+    return initElements.filter((el: BuilderElementData) => el.type === type)
   }
 
   const add = (type: string) => {
     const element = loadElementInit(type)[0].element
     builderStore.add(element)
+  }
+  const remove = (index: number) => {
+    // const element = loadElementInit(number)[0].element
+    builderStore.remove(index)
+    // console.log('index', index)
   }
   const setFilterGroup = (type: FieldGroup) => {
     builderStore.setFilterGroup(type)
@@ -118,7 +68,7 @@ export function useBuilder () {
     // { icon: 'mdi-check', title: 'Multi-image Upload', subtitle: '', type: 'text', group: 'fields', action: {} },
   ]
   const structureElements: FieldDraggableList = [
-    { icon: 'mdi-text-short', title: 'Short text', subtitle: 'Single line input', type: 'heading', group: 'static', action: {} },
+    { icon: 'mdi-text-short', title: 'Container', subtitle: 'A container to group elements', type: 'container', group: 'structure', action: {} },
   ]
   const staticElements: FieldDraggableList = [
     { icon: 'mdi-check-bold', title: 'Submit button', subtitle: 'Button that triggers submission', type: 'button', group: 'static', action: {} },
@@ -162,6 +112,7 @@ export function useBuilder () {
 
   return {
     add,
+    remove,
     allFieldGroup,
     fieldGroupData,
     setFilterGroup,

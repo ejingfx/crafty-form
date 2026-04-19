@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts" setup>
-  import type { FieldGroup } from '../types/builder'
-  import { useBuilder } from '../composables/useBuilder'
-  import { useBuilderStore } from '../stores/builder'
+  import type { FieldGroup } from '../../types/builder'
+  import { useBuilder } from '../../composables/useBuilder'
+  import { useBuilderStore } from '../../stores/builder'
 
   const builderStore = useBuilderStore()
   const builder = useBuilder()

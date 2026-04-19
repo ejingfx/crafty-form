@@ -11,12 +11,19 @@ export type FieldDraggable = {
 
 export type FieldDraggableList = FieldDraggable[]
 
+// Element Group
 export type FieldType = 'checkbox'
   | 'email'
   | 'number'
   | 'select'
   | 'text'
   | 'textarea'
+
+export type StructureType = 'container'
+  | 'tabs'
+
+export type StaticType = 'button'
+  | 'heading'
 
 export type Position = 'left' | 'top' | 'bottom' | 'right' | 'start' | 'end'
 
@@ -89,21 +96,20 @@ export interface SelectProperties extends BaseProperties {
 }
 
 export interface ContainerProperties extends BaseProperties {
-  type: 'container'
+  // type: 'container'
+}
+export type ButtonOptionsType = 'primary' | 'secondary' | 'warning' | 'danger'
+export type ButtonOptions = {
+  label: string
+  type: ButtonOptionsType
+  submits: boolean
+  resets: boolean
 }
 
-export type ContainerElement = {
-  type: 'container'
-  order?: number
-  properties: ContainerProperties
-  layout: Layout
-  validation?: Validation
-  logic?: Logic
-}
-
+// Fields Group
 export type TextElement = {
   type: 'text'
-  order?: number
+  key?: string
   properties: TextProperties
   layout: Layout
   validation?: Validation
@@ -112,7 +118,7 @@ export type TextElement = {
 
 export type TextareaElement = {
   type: 'textarea'
-  order?: number
+  key?: string
   properties: TextProperties
   layout: Layout
   validation?: Validation
@@ -121,7 +127,7 @@ export type TextareaElement = {
 
 export type NumberElement = {
   type: 'number'
-  order?: number
+  key?: string
   properties: NumberProperties
   layout: Layout
   validation?: Validation
@@ -130,20 +136,48 @@ export type NumberElement = {
 
 export type SelectElement = {
   type: 'select'
-  order?: number
+  key?: string
   properties: SelectProperties
   layout: Layout
   validation?: Validation
   logic?: Logic
 }
 
-export type Element = | ContainerElement
-  | TextElement
+// Structure Group
+export type ContainerElement = {
+  type: 'container'
+  key?: string
+  properties: ContainerProperties
+  layout: Layout
+  validation?: Validation
+  logic?: Logic
+}
+
+// Static Group
+export type ButtonElement = {
+  type: 'button'
+  key?: string
+  properties: TextProperties
+  options: ButtonOptions
+  layout: Layout
+  validation?: Validation
+  logic?: Logic
+}
+
+export type Element = | TextElement
   | TextareaElement
   | NumberElement
   | SelectElement
+  | ContainerElement // Structure
+  | ButtonElement // Static
 
 export interface FieldsData {
   elements: Element[]
   settings: string[]
+}
+
+// For Builder Data
+export type BuilderElementData = {
+  type: FieldType | StructureType | StaticType
+  element: Element
 }
