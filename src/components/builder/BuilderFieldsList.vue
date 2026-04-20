@@ -18,7 +18,10 @@
               density="compact"
               icon="mdi-plus"
               variant="plain"
-              @click="builder.add(item.type)"
+              @click="isWithSubtype(item.type)
+                ? builder.add(item.type, item.subtype)
+                : builder.add(item.type)
+              "
             ></v-btn>
           </template>
           <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -45,7 +48,10 @@
               density="compact"
               icon="mdi-plus"
               variant="plain"
-              @click="builder.add(item.type)"
+              @click="isWithSubtype(item.type)
+                ? builder.add(item.type, item.subtype)
+                : builder.add(item.type)
+              "
             ></v-btn>
           </template>
           <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -57,10 +63,18 @@
 </template>
 
 <script lang="ts" setup>
+  import type { HeadingSubtype } from '../../types/fields'
+  import { ref } from 'vue'
   import { useBuilder } from '../../composables/useBuilder'
-
   const builder = useBuilder()
   const getGroupFiltered = builder.getGroupFiltered
   const getSearchFiltered = builder.getSearchFiltered
   const showSearchFilterGroup = builder.showSearchFilterGroup
+  const multiTypes = ref([
+    'heading',
+  ])
+
+  function isWithSubtype (item: string) {
+    return multiTypes.value.includes(item as HeadingSubtype)
+  }
 </script>

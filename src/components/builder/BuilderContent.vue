@@ -28,6 +28,9 @@
               <div class="custom-draggable">
                 <div class="custom-draggable-inner">
                   <div class="custom-draggable-wrap">
+                    <div class="custom-draggable-element bg-pizazz">
+                      <span class="px-1 text-white text-capitalize">{{ element.type }}</span>
+                    </div>
                     <div class="custom-draggable-actions">
                       <v-btn
                         class="custom-draggable-btn"
@@ -54,10 +57,14 @@
 
                   <v-list-item class="bg-transparent relative" dense>
                     <FieldNumber v-if="element.type === 'number'" :data="element" />
+                    <FieldPhone v-if="element.type === 'phone'" :data="element" />
+                    <FieldText v-else-if="element.type === 'text'" :data="element" />
                     <FieldTextarea v-else-if="element.type === 'textarea'" :data="element" />
                     <StructureContainer v-else-if="element.type === 'container'" :data="element" />
                     <StaticButton v-else-if="element.type === 'button'" :data="element" />
-                    <FieldText v-else :data="element" />
+                    <FormHeading v-else-if="element.type === 'heading'" :data="element" />
+                    <FieldEmail v-else-if="element.type === 'email'" :data="element" />
+                    <FieldPassword v-else-if="element.type === 'password'" :data="element" />
                   </v-list-item>
                 </div>
               </div>

@@ -3,6 +3,7 @@
     <v-textarea
       :label="props.data.properties.label"
       :placeholder="props.data.properties.placeholder"
+      variant="solo-filled"
     >
     </v-textarea>
   </v-card>

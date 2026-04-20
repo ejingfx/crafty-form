@@ -21,6 +21,7 @@ export default createVuetify({
           'cadet-blue': '#a4aebd',
           'mine-shaft': '#363636',
           'pizazz': '#FB8C00',
+          'raven': '#7a808d',
         },
       },
     },

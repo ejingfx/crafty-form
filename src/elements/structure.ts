@@ -15,6 +15,9 @@ const structure: BuilderElementData[] = [
         size: 'default',
         position: 'left',
       },
+      attributes: {
+        name: 'container',
+      },
     },
   },
 ]

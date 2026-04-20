@@ -15,6 +15,30 @@ const fields: BuilderElementData[] = [
         size: 'default',
         position: 'left',
       },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
+  {
+    type: 'phone',
+    element: {
+      type: 'phone',
+      properties: {
+        label: 'Phone',
+        description: '',
+        placeholder: '',
+        min: 7,
+        max: 12,
+      },
+      layout: {
+        column: 12,
+        size: 'default',
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
     },
   },
   {
@@ -31,6 +55,9 @@ const fields: BuilderElementData[] = [
         size: 'default',
         position: 'left',
       },
+      attributes: {
+        name: 'field',
+      },
     },
   },
   {
@@ -46,6 +73,49 @@ const fields: BuilderElementData[] = [
         column: 12,
         size: 'default',
         position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
+  {
+    type: 'email',
+    element: {
+      type: 'email',
+      properties: {
+        label: 'Email',
+        description: '',
+        placeholder: '',
+        disabled: false,
+        readonly: false,
+      },
+      layout: {
+        column: 12,
+        size: 'default',
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
+  {
+    type: 'password',
+    element: {
+      type: 'password',
+      properties: {
+        label: 'Password',
+        description: '',
+        placeholder: '',
+      },
+      layout: {
+        column: 12,
+        size: 'default',
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
       },
     },
   },

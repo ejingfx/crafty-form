@@ -1,9 +1,10 @@
 <template>
   <v-card flat>
     <v-number-input
-      control-variant="default"
+      control-variant="stacked"
       :label="props.data.properties.label"
       :placeholder="props.data.properties.placeholder"
+      variant="solo-filled"
     >
     </v-number-input>
   </v-card>

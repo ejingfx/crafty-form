@@ -5,6 +5,7 @@ export type FieldDraggable = {
   title: string
   subtitle: string
   type: string
+  subtype?: string
   group: string
   action?: {}
 }
@@ -15,9 +16,11 @@ export type FieldDraggableList = FieldDraggable[]
 export type FieldType = 'checkbox'
   | 'email'
   | 'number'
+  | 'phone'
   | 'select'
   | 'text'
   | 'textarea'
+  | 'password'
 
 export type StructureType = 'container'
   | 'tabs'
@@ -40,6 +43,10 @@ export interface Layout {
   column: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
   size: Size
   position: Extract<Position, 'left' | 'top'>
+}
+export interface HeadingLayout extends Layout {
+  space_top: number | 0 | 1 | 2 | 3
+  space_bottom: number | 0 | 1 | 2 | 3
 }
 
 export interface ValidationRule {
@@ -68,10 +75,14 @@ export interface Logic {
 
 // Base
 export interface BaseProperties {
+  subtype?: string
   label: string
   description: string
   placeholder?: string
   disabled?: boolean
+}
+export interface Attributes {
+  name: string
 }
 // Per Field
 export interface TextProperties extends BaseProperties {
@@ -85,8 +96,16 @@ export interface TextareaProperties extends BaseProperties {
 export interface NumberProperties extends BaseProperties {
   min?: number
   max?: number
+  stepper?: boolean
 }
 
+export interface EmailProperties extends BaseProperties {
+  disabled?: boolean
+  readonly?: boolean
+}
+
+export interface PasswordProperties extends BaseProperties {
+}
 export interface SelectProperties extends BaseProperties {
   type: 'select'
   options: {
@@ -98,6 +117,12 @@ export interface SelectProperties extends BaseProperties {
 export interface ContainerProperties extends BaseProperties {
   // type: 'container'
 }
+export const headingSubtypes = ['form', 'section', 'subsection'] as const
+export type HeadingSubtype = typeof headingSubtypes[number]
+export interface HeadingProperties extends BaseProperties {
+  subtype: HeadingSubtype
+}
+
 export type ButtonOptionsType = 'primary' | 'secondary' | 'warning' | 'danger'
 export type ButtonOptions = {
   label: string
@@ -114,6 +139,7 @@ export type TextElement = {
   layout: Layout
   validation?: Validation
   logic?: Logic
+  attributes: Attributes
 }
 
 export type TextareaElement = {
@@ -123,6 +149,7 @@ export type TextareaElement = {
   layout: Layout
   validation?: Validation
   logic?: Logic
+  attributes: Attributes
 }
 
 export type NumberElement = {
@@ -132,6 +159,37 @@ export type NumberElement = {
   layout: Layout
   validation?: Validation
   logic?: Logic
+  attributes: Attributes
+}
+
+export type PhoneElement = {
+  type: 'phone'
+  key?: string
+  properties: NumberProperties
+  layout: Layout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
+}
+
+export type EmailElement = {
+  type: 'email'
+  key?: string
+  properties: EmailProperties
+  layout: Layout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
+}
+
+export type PasswordElement = {
+  type: 'password'
+  key?: string
+  properties: PasswordProperties
+  layout: Layout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
 }
 
 export type SelectElement = {
@@ -141,6 +199,7 @@ export type SelectElement = {
   layout: Layout
   validation?: Validation
   logic?: Logic
+  attributes: Attributes
 }
 
 // Structure Group
@@ -151,6 +210,7 @@ export type ContainerElement = {
   layout: Layout
   validation?: Validation
   logic?: Logic
+  attributes: Attributes
 }
 
 // Static Group
@@ -162,14 +222,28 @@ export type ButtonElement = {
   layout: Layout
   validation?: Validation
   logic?: Logic
+  attributes: Attributes
+}
+export type HeadingElement = {
+  type: 'heading'
+  key?: string
+  properties: HeadingProperties
+  layout: HeadingLayout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
 }
 
 export type Element = | TextElement
   | TextareaElement
   | NumberElement
+  | PhoneElement
   | SelectElement
+  | EmailElement
+  | PasswordElement
   | ContainerElement // Structure
   | ButtonElement // Static
+  | HeadingElement
 
 export interface FieldsData {
   elements: Element[]
