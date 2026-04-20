@@ -60,11 +60,15 @@
                     <FieldPhone v-if="element.type === 'phone'" :data="element" />
                     <FieldText v-else-if="element.type === 'text'" :data="element" />
                     <FieldTextarea v-else-if="element.type === 'textarea'" :data="element" />
+                    <FieldPassword v-else-if="element.type === 'password'" :data="element" />
+                    <FieldCheckbox v-else-if="element.type === 'checkbox'" :data="element" />
+                    <FieldRadio v-else-if="element.type === 'radio'" :data="element" />
+
                     <StructureContainer v-else-if="element.type === 'container'" :data="element" />
+
                     <StaticButton v-else-if="element.type === 'button'" :data="element" />
                     <FormHeading v-else-if="element.type === 'heading'" :data="element" />
                     <FieldEmail v-else-if="element.type === 'email'" :data="element" />
-                    <FieldPassword v-else-if="element.type === 'password'" :data="element" />
                   </v-list-item>
                 </div>
               </div>

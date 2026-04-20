@@ -1,12 +1,10 @@
 <template>
   <v-card flat>
-    <v-text-field
+    <v-checkbox
+      hide-details
       :label="props.data.properties.label"
-      :placeholder="props.data.properties.placeholder"
-      type="email"
-      variant="solo-filled"
     >
-    </v-text-field>
+    </v-checkbox>
   </v-card>
 </template>
 

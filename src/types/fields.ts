@@ -21,6 +21,8 @@ export type FieldType = 'checkbox'
   | 'text'
   | 'textarea'
   | 'password'
+  | 'checkbox'
+  | 'radio'
 
 export type StructureType = 'container'
   | 'tabs'
@@ -49,6 +51,15 @@ export interface HeadingLayout extends Layout {
   space_bottom: number | 0 | 1 | 2 | 3
 }
 
+export type CheckboxLayout = {
+  position: Extract<Position, 'left' | 'right'>
+}
+
+export type RadioLayout = {
+  position: Extract<Position, 'left' | 'right'>
+}
+
+// Validation
 export interface ValidationRule {
   type: ValidationType
   value?: any
@@ -131,6 +142,28 @@ export type ButtonOptions = {
   resets: boolean
 }
 
+export interface CheckboxProperties extends BaseProperties {
+  // type: 'container'
+}
+export interface CheckboxOptions {
+  true_value: boolean | any
+  false_value: boolean | any
+}
+
+export interface RadioProperties extends BaseProperties {
+  inline: boolean
+  hide_group_label: boolean
+}
+
+export type RadioOption = {
+  label: string
+  value: string
+}
+export type RadioOptions = {
+  default_value: string
+  choices: [RadioOption, RadioOption, ...RadioOption[]]
+}
+
 // Fields Group
 export type TextElement = {
   type: 'text'
@@ -202,6 +235,28 @@ export type SelectElement = {
   attributes: Attributes
 }
 
+export type CheckboxElement = {
+  type: 'checkbox'
+  key?: string
+  properties: CheckboxProperties
+  options: CheckboxOptions
+  layout: CheckboxLayout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
+}
+
+export type RadioElement = {
+  type: 'radio'
+  key?: string
+  properties: RadioProperties
+  options: RadioOptions
+  layout: RadioLayout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
+}
+
 // Structure Group
 export type ContainerElement = {
   type: 'container'
@@ -241,6 +296,8 @@ export type Element = | TextElement
   | SelectElement
   | EmailElement
   | PasswordElement
+  | CheckboxElement
+  | RadioElement
   | ContainerElement // Structure
   | ButtonElement // Static
   | HeadingElement

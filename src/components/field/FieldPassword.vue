@@ -1,11 +1,13 @@
 <template>
-  <v-text-field
-    :label="props.data.properties.label"
-    :placeholder="props.data.properties.placeholder"
-    type="password"
-    variant="solo-filled"
-  >
-  </v-text-field>
+  <v-card flat>
+    <v-text-field
+      :label="props.data.properties.label"
+      :placeholder="props.data.properties.placeholder"
+      type="password"
+      variant="solo-filled"
+    >
+    </v-text-field>
+  </v-card>
 </template>
 
 <script lang="ts" setup>

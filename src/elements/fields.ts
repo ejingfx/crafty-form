@@ -119,6 +119,53 @@ const fields: BuilderElementData[] = [
       },
     },
   },
+  {
+    type: 'checkbox',
+    element: {
+      type: 'checkbox',
+      properties: {
+        label: 'Checkbox',
+        description: 'test',
+        placeholder: '',
+      },
+      options: {
+        true_value: true,
+        false_value: false,
+      },
+      layout: {
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
+  {
+    type: 'radio',
+    element: {
+      type: 'radio',
+      properties: {
+        label: 'Radio group label',
+        description: '',
+        placeholder: '',
+        inline: true,
+        hide_group_label: false,
+      },
+      options: {
+        default_value: '1',
+        choices: [
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+        ],
+      },
+      layout: {
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
 ]
 
 export default fields
