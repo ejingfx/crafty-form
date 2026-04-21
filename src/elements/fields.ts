@@ -201,6 +201,7 @@ const fields: BuilderElementData[] = [
         clearable: true,
         chips: true,
         multiple: true,
+        accept_input: true,
         choices: [
           'Option 1',
           'Option 2',

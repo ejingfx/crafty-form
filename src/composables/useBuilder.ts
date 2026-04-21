@@ -63,7 +63,7 @@ export function useBuilder () {
     // { icon: 'mdi-check', title: 'Image', subtitle: 'Display an image', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Link', subtitle: 'Link to another website', type: 'text', group: 'fields', action: {} },
     { icon: 'mdi-radiobox-marked', title: 'Radio', subtitle: 'Select from set of options', type: 'radio', subtype: 'group', group: 'fields', action: {} },
-    { icon: 'mdi-select', title: 'Select', subtitle: 'Select a single or multiple values', type: 'select', group: 'fields', action: {} },
+    { icon: 'mdi-select', title: 'Select', subtitle: 'Select a single/multiple or add new values', type: 'select', group: 'fields', action: {} },
     { icon: 'mdi-check', title: 'Checkbox', subtitle: '', type: 'checkbox', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Single Comparison', subtitle: '', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Multiple Comparison', subtitle: '', type: 'text', group: 'fields', action: {} },

@@ -188,6 +188,7 @@ export type SelectOptions = {
   clearable: boolean
   chips: boolean
   multiple: boolean
+  accept_input: boolean
   choices: any[]
 }
 // Fields Group
