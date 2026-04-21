@@ -1,5 +1,3 @@
-// import type { FieldGroup, FieldGroupLabel } from '@/types/builder'
-
 export type FieldDraggable = {
   icon: string
   title: string
@@ -23,6 +21,8 @@ export type FieldType = 'checkbox'
   | 'password'
   | 'checkbox'
   | 'radio'
+  | 'switch'
+  | 'select'
 
 export type StructureType = 'container'
   | 'tabs'
@@ -56,6 +56,14 @@ export type CheckboxLayout = {
 }
 
 export type RadioLayout = {
+  position: Extract<Position, 'left' | 'right'>
+}
+
+export type SwitchLayout = {
+  position: Extract<Position, 'left' | 'right'>
+}
+
+export type SelectLayout = {
   position: Extract<Position, 'left' | 'right'>
 }
 
@@ -118,18 +126,17 @@ export interface EmailProperties extends BaseProperties {
 export interface PasswordProperties extends BaseProperties {
 }
 export interface SelectProperties extends BaseProperties {
-  type: 'select'
-  options: {
-    label: string
-    value: string
-  }[]
 }
 
 export interface ContainerProperties extends BaseProperties {
-  // type: 'container'
 }
+
 export const headingSubtypes = ['form', 'section', 'subsection'] as const
+export const selectSubtypes = ['multiple'] as const
+
 export type HeadingSubtype = typeof headingSubtypes[number]
+export type SelectSubtype = typeof selectSubtypes[number]
+
 export interface HeadingProperties extends BaseProperties {
   subtype: HeadingSubtype
 }
@@ -164,6 +171,25 @@ export type RadioOptions = {
   choices: [RadioOption, RadioOption, ...RadioOption[]]
 }
 
+export interface SwitchProperties extends BaseProperties {
+  inset: boolean
+}
+
+export type SwitchOption = {
+  label: string
+  value: boolean
+}
+export type SwitchOptions = {
+  default_value: boolean
+}
+
+export type SelectOptions = {
+  default_value: any
+  clearable: boolean
+  chips: boolean
+  multiple: boolean
+  choices: any[]
+}
 // Fields Group
 export type TextElement = {
   type: 'text'
@@ -225,16 +251,6 @@ export type PasswordElement = {
   attributes: Attributes
 }
 
-export type SelectElement = {
-  type: 'select'
-  key?: string
-  properties: SelectProperties
-  layout: Layout
-  validation?: Validation
-  logic?: Logic
-  attributes: Attributes
-}
-
 export type CheckboxElement = {
   type: 'checkbox'
   key?: string
@@ -252,6 +268,28 @@ export type RadioElement = {
   properties: RadioProperties
   options: RadioOptions
   layout: RadioLayout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
+}
+
+export type SwitchElement = {
+  type: 'switch'
+  key?: string
+  properties: SwitchProperties
+  options: SwitchOptions
+  layout: SwitchLayout
+  validation?: Validation
+  logic?: Logic
+  attributes: Attributes
+}
+
+export type SelectElement = {
+  type: 'select'
+  key?: string
+  properties: SelectProperties
+  options: SelectOptions
+  layout: SelectLayout
   validation?: Validation
   logic?: Logic
   attributes: Attributes
@@ -289,6 +327,11 @@ export type HeadingElement = {
   attributes: Attributes
 }
 
+export const elementWithSubtypes = [
+  'heading',
+] as const
+export type ElementsWithSubtypes = Extract<StaticType, 'heading'>
+
 export type Element = | TextElement
   | TextareaElement
   | NumberElement
@@ -298,6 +341,8 @@ export type Element = | TextElement
   | PasswordElement
   | CheckboxElement
   | RadioElement
+  | SwitchElement
+  | SelectElement
   | ContainerElement // Structure
   | ButtonElement // Static
   | HeadingElement

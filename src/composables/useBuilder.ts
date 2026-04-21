@@ -5,12 +5,14 @@ import type {
 import type {
   BuilderElementData,
   Element,
+  ElementsWithSubtypes,
   FieldDraggableList,
 } from '@/types/fields'
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
 import { headingSubtypes } from '@/types/fields'
 import { useElement } from '../composables/useElement'
+import { elementWithSubtypes } from '../types/fields'
 
 export function useBuilder () {
   const builderStore = useBuilderStore()
@@ -25,6 +27,10 @@ export function useBuilder () {
     const initElements = elements.initElements
     return initElements
       .filter((el: BuilderElementData) => el.type === type && el.element.properties.subtype === subtype)
+  }
+
+  const isWithSubtype = (item: string) => {
+    return elementWithSubtypes.includes(item as ElementsWithSubtypes)
   }
 
   const add = (type: string, subtype?: string) => {
@@ -57,13 +63,13 @@ export function useBuilder () {
     // { icon: 'mdi-check', title: 'Image', subtitle: 'Display an image', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Link', subtitle: 'Link to another website', type: 'text', group: 'fields', action: {} },
     { icon: 'mdi-radiobox-marked', title: 'Radio', subtitle: 'Select from set of options', type: 'radio', subtype: 'group', group: 'fields', action: {} },
-    // { icon: 'mdi-check', title: 'Single Choice', subtitle: '', type: 'text', group: 'fields', action: {} },
+    { icon: 'mdi-select', title: 'Select', subtitle: 'Select a single or multiple values', type: 'select', group: 'fields', action: {} },
     { icon: 'mdi-check', title: 'Checkbox', subtitle: '', type: 'checkbox', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Single Comparison', subtitle: '', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Multiple Comparison', subtitle: '', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Dropdown', subtitle: '', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Tags', subtitle: '', type: 'text', group: 'fields', action: {} },
-    // { icon: 'mdi-check', title: 'Switches', subtitle: '', type: 'text', group: 'fields', action: {} },
+    { icon: 'mdi-toggle-switch-outline', title: 'Switches', subtitle: '', type: 'switch', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Date', subtitle: '', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Time', subtitle: '', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Mulitple Dates', subtitle: '', type: 'text', group: 'fields', action: {} },
@@ -130,6 +136,7 @@ export function useBuilder () {
     clone,
     allFieldGroup,
     fieldGroupData,
+    isWithSubtype,
     setFilterGroup,
     setSearchFilterGroup,
     getAllFieldGroup,

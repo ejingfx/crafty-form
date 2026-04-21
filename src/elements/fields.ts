@@ -166,6 +166,56 @@ const fields: BuilderElementData[] = [
       },
     },
   },
+  {
+    type: 'switch',
+    element: {
+      type: 'switch',
+      properties: {
+        label: 'Switch label',
+        description: '',
+        placeholder: '',
+        inset: false,
+      },
+      options: {
+        default_value: false,
+      },
+      layout: {
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
+  {
+    type: 'select',
+    element: {
+      type: 'select',
+      properties: {
+        label: 'Select label',
+        description: '',
+        placeholder: '',
+      },
+      options: {
+        default_value: 'Option 1',
+        clearable: true,
+        chips: true,
+        multiple: true,
+        choices: [
+          'Option 1',
+          'Option 2',
+          'Option 3',
+          'Option 4',
+        ],
+      },
+      layout: {
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
 ]
 
 export default fields

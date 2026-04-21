@@ -1,6 +1,7 @@
 <template>
   <v-card flat :rounded="false">
     <legend>
+      <!-- TODO: May need to refactor -->
       <template v-if="props.data.properties.subtype === 'form'">
         <h1 class="my-0 heading-0 leading-0">{{ props.data.properties.label }}</h1>
       </template>
