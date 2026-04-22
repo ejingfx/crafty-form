@@ -1,6 +1,7 @@
 <template>
   <v-card flat>
     <v-text-field
+      clearable
       :label="props.data.properties.label"
       :placeholder="props.data.properties.placeholder"
       type="password"

@@ -39,7 +39,7 @@
                         :rounded="false"
                         size="x-small"
                         variant="text"
-                        @click="builder.clone(element, index)"
+                        @click="clone(element, index)"
                       />
                       <v-divider vertical />
                       <v-btn
@@ -50,30 +50,16 @@
                         :rounded="false"
                         size="x-small"
                         variant="text"
-                        @click="builder.remove(index)"
+                        @click="remove(index)"
                       />
                     </div>
                   </div>
 
                   <v-list-item class="bg-transparent relative" dense>
-                    <!-- FIELDS ELEMENTS -->
-                    <FieldNumber v-if="element.type === 'number'" :data="element" />
-                    <FieldPhone v-if="element.type === 'phone'" :data="element" />
-                    <FieldText v-else-if="element.type === 'text'" :data="element" />
-                    <FieldTextarea v-else-if="element.type === 'textarea'" :data="element" />
-                    <FieldPassword v-else-if="element.type === 'password'" :data="element" />
-                    <FieldCheckbox v-else-if="element.type === 'checkbox'" :data="element" />
-                    <FieldSwitch v-else-if="element.type === 'switch'" :data="element" />
-                    <FieldRadio v-else-if="element.type === 'radio'" :data="element" />
-                    <FieldSelect v-else-if="element.type === 'select'" :data="element" />
-
-                    <!-- STRUCTURE ELEMENTS -->
-                    <StructureContainer v-else-if="element.type === 'container'" :data="element" />
-
-                    <!-- STATIC ELEMENTS -->
-                    <StaticButton v-else-if="element.type === 'button'" :data="element" />
-                    <FormHeading v-else-if="element.type === 'heading'" :data="element" />
-                    <FieldEmail v-else-if="element.type === 'email'" :data="element" />
+                    <component
+                      :is="resolve(element.type)"
+                      :data="element"
+                    />
                   </v-list-item>
                 </div>
               </div>
@@ -98,9 +84,11 @@
   import { computed, ref } from 'vue'
   import draggable from 'vuedraggable'
   import { useBuilder } from '../../composables/useBuilder'
+  import { useElementComponent } from '../../composables/useElementComponent'
   import { useBuilderStore } from '../../stores/builder'
 
-  const builder = useBuilder()
+  const { resolve } = useElementComponent()
+  const { clone, remove } = useBuilder()
   const builderStore = useBuilderStore()
   const enabled = ref(true)
   const dragging = ref(false)

@@ -25,6 +25,7 @@ declare module 'vue' {
     BuilderSearch: typeof import('./src/components/BuilderSearch.vue')['default']
     BuilderSearchElement: typeof import('./src/components/builder/BuilderSearchElement.vue')['default']
     copy: typeof import('./src/components/field/FieldRadio copy.vue')['default']
+    Fallback: typeof import('./src/components/Fallback.vue')['default']
     FieldCheckbox: typeof import('./src/components/field/FieldCheckbox.vue')['default']
     FieldEmail: typeof import('./src/components/field/FieldEmail.vue')['default']
     FieldNumber: typeof import('./src/components/field/FieldNumber.vue')['default']
