@@ -1,11 +1,14 @@
 import type {
+  BufferField,
   FieldGroup,
   FieldGroupData,
+  ResolveBufferField,
 } from '@/types/builder'
 import type {
   BuilderElementData,
   Element,
   ElementsWithSubtypes,
+  FieldDraggable,
   FieldDraggableList,
 } from '@/types/fields'
 import { computed } from 'vue'
@@ -39,11 +42,57 @@ export function useBuilder () {
       : loadElementInitWithSubtype(type, subtype)[0].element
     builderStore.add(element)
   }
+  const end = () => {
+    console.log('end')
+    builderStore.clearBuffer()
+  }
   const remove = (index: number) => {
     builderStore.remove(index)
   }
   const clone = (element: Element, index: number) => {
     builderStore.clone(element, index)
+  }
+  const resolveBuffer = () => {
+    const type: string = builderStore.$state.buffer?.type as string
+    const subtype: string = builderStore.$state.buffer?.subtype as string
+
+    return {
+      type,
+      subtype,
+    }
+  }
+  const stage = (element: FieldDraggable) => {
+    if (builderStore.$state.buffer === null) {
+      builderStore.$state.buffer = element
+    }
+  }
+  const addOrInsert = (event: any) => {
+    const { type, subtype } = resolveBuffer()
+    const { newIndex } = event
+
+    // Check if element push or insertion
+    const length = builderStore.$state.elements.length
+    console.log('addOrInsert? length, newIndex...', length, newIndex)
+
+    length === newIndex
+      ? push(type, subtype)
+      : insert(newIndex, type, subtype)
+  }
+  const insert = (index: number, type: string, subtype?: string) => {
+    console.log('with subtype', subtype !== undefined)
+    const element = subtype === undefined
+      ? loadElementInit(type)[0]?.element
+      : loadElementInitWithSubtype(type, subtype)[0].element
+    const length = builderStore.$state.elements.length
+
+    console.log('insert??? length, index, type, subtype...', length, index, type, subtype)
+    builderStore.insert(index, element)
+  }
+  const push = (type: string, subtype?: string) => {
+    isWithSubtype(type)
+      ? add(type, subtype)
+      : add(type)
+    builderStore.clearBuffer()
   }
   const setFilterGroup = (type: FieldGroup) => {
     builderStore.setFilterGroup(type)
@@ -62,7 +111,7 @@ export function useBuilder () {
     // { icon: 'mdi-check', title: 'Paragraph', subtitle: 'Formatted text', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Image', subtitle: 'Display an image', type: 'text', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Link', subtitle: 'Link to another website', type: 'text', group: 'fields', action: {} },
-    { icon: 'mdi-radiobox-marked', title: 'Radio', subtitle: 'Select from set of options', type: 'radio', subtype: 'group', group: 'fields', action: {} },
+    { icon: 'mdi-radiobox-marked', title: 'Radio', subtitle: 'Select from set of options', type: 'radio', group: 'fields', action: {} },
     { icon: 'mdi-select', title: 'Select', subtitle: 'Select a single/multiple or add new values', type: 'select', group: 'fields', action: {} },
     { icon: 'mdi-check', title: 'Checkbox', subtitle: '', type: 'checkbox', group: 'fields', action: {} },
     // { icon: 'mdi-check', title: 'Single Comparison', subtitle: '', type: 'text', group: 'fields', action: {} },
@@ -132,16 +181,22 @@ export function useBuilder () {
 
   return {
     add,
-    remove,
-    clone,
+    addOrInsert,
     allFieldGroup,
+    clone,
+    end,
     fieldGroupData,
-    isWithSubtype,
-    setFilterGroup,
-    setSearchFilterGroup,
     getAllFieldGroup,
     getGroupFiltered,
     getSearchFiltered,
+    insert,
+    isWithSubtype,
+    push,
+    setFilterGroup,
+    setSearchFilterGroup,
     showSearchFilterGroup,
+    stage,
+    remove,
+    resolveBuffer,
   }
 }

@@ -11,6 +11,7 @@
         placeholder="Search elements"
         prepend-inner-icon="mdi-magnify"
         single-line
+        variant="solo-filled"
       />
     </v-card-text>
   </v-card>
