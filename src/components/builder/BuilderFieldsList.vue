@@ -2,7 +2,6 @@
   <v-card class="d-flex flex-column justify-start align start bg-transparent" flat>
     <!-- GROUP FILTERED -->
     <v-list
-      v-show="showSearchFilterGroup"
       density="compact"
       lines="two"
     >
@@ -12,7 +11,7 @@
         :clone="stage"
         :group="{ name: 'elements', pull: 'clone', put: true }"
         item-key="element.key"
-        :list="getGroupFiltered"
+        :list="getGroupOrQueryFiltered"
         :sort="false"
         @end="end"
         @start="stage"
@@ -39,8 +38,6 @@
   const {
     end,
     stage,
-    getGroupFiltered,
-    getSearchFiltered,
-    showSearchFilterGroup,
+    getGroupOrQueryFiltered,
   } = useBuilder()
 </script>

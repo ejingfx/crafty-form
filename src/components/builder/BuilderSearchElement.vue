@@ -12,6 +12,7 @@
         prepend-inner-icon="mdi-magnify"
         single-line
         variant="solo-filled"
+        @click:clear="setSearchFilterGroup('')"
       />
     </v-card-text>
   </v-card>
@@ -21,4 +22,5 @@
   import { useBuilderStore } from '../../stores/builder'
 
   const builderStore = useBuilderStore()
+  const { setSearchFilterGroup } = builderStore
 </script>

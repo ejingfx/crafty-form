@@ -42,9 +42,7 @@ export const useBuilderStore = defineStore('builder', {
       this.buffer = null
     },
     insert (index: number, payload: Element) {
-      console.log('store length, index...', this.elements.length, index)
       this.elements.splice(index, 0, payload)
-      console.log('result', this.elements)
       this.clearBuffer()
     },
     setBuffer (payload: BufferField) {

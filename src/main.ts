@@ -15,6 +15,7 @@ import { useAuthStore } from '@/stores/auth'
 import App from './App.vue'
 
 // Styles
+import 'vuetify/styles'
 import 'unfonts.css'
 
 const app = createApp(App)

@@ -172,11 +172,20 @@ export function useBuilder () {
   ]
 
   const getAllFieldGroup = () => allFieldGroup
-  const getGroupFiltered = computed(() => {
-    return allFieldGroup.filter(item => {
-      const filter = builderStore.$state.filterGroup
-      return item.group === filter
+  const getGroupOrQueryFiltered = computed(() => {
+    const grouped = allFieldGroup.filter(item => {
+      return item.group === builderStore.$state.filterGroup
     })
+
+    const query = allFieldGroup.filter(item => {
+      const searchFilterGroup = builderStore.$state.searchFilterGroup
+      const filter = searchFilterGroup ?? ''
+      return item.title.toLowerCase().includes(filter.toLowerCase())
+    })
+
+    return builderStore.$state.searchFilterGroup === ''
+      ? grouped
+      : query
   })
 
   // Sidebar Search Element Field Filter
@@ -205,7 +214,7 @@ export function useBuilder () {
     end,
     fieldGroupData,
     getAllFieldGroup,
-    getGroupFiltered,
+    getGroupOrQueryFiltered,
     getSearchFiltered,
     insert,
     isWithSubtype,
