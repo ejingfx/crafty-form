@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <template v-if="props.data.options.accept_input">
+    <template v-if="props.data.properties.subtype === 'multiple'">
       <v-combobox
         :chips="props.data.options.chips"
         :choices="props.data.options.choices"
@@ -12,15 +12,13 @@
         variant="solo-filled"
       ></v-combobox>
     </template>
-    <template v-else>
+    <template v-if="props.data.properties.subtype === 'single'">
       <v-select
-        :chips="props.data.options.chips"
         :choices="props.data.options.choices"
         :clearable="props.data.options.clearable"
         hide-details
         :items="props.data.options.choices"
         :label="props.data.properties.label"
-        :multiple="props.data.options.multiple"
         variant="solo-filled"
       ></v-select>
     </template>

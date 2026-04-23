@@ -15,6 +15,7 @@
         item-key="key"
         @add="addOrInsert"
         @start="start"
+        @update="update"
       >
         <template #item="{ element, index }">
           <div
@@ -23,39 +24,39 @@
           >
             <div class="custom-draggable">
               <div class="custom-draggable-inner">
-                <div class="custom-draggable-wrap">
-                  <div class="custom-draggable-element bg-pizazz">
-                    <span class="px-1 text-white text-capitalize">{{ element.type }}</span>
-                  </div>
-                  <div class="custom-draggable-actions">
-                    <v-btn
-                      class="custom-draggable-btn"
-                      color="pizazz"
-                      icon="mdi-content-copy"
-                      :rounded="false"
-                      size="x-small"
-                      variant="text"
-                      @click="clone(element, index)"
-                    />
-                    <v-divider vertical />
-                    <v-btn
-                      class="custom-draggable-btn"
-                      color="pizazz"
-                      :data-index="index"
-                      icon="mdi-trash-can-outline"
-                      :rounded="false"
-                      size="x-small"
-                      variant="text"
-                      @click="remove(index)"
-                    />
-                  </div>
-                </div>
-
-                <v-list-item class="bg-transparent relative" dense>
+                <v-list-item class="custom-draggable-component bg-transparent relative" dense>
                   <component
                     :is="resolve(element.type)"
                     :data="element"
                   />
+
+                  <div class="custom-draggable-wrap">
+                    <div class="custom-draggable-element bg-pizazz">
+                      <span class="px-1 text-white text-capitalize">{{ element.properties?.alias ?? element.type }}</span>
+                    </div>
+                    <div class="custom-draggable-actions">
+                      <v-btn
+                        class="custom-draggable-btn"
+                        color="pizazz"
+                        icon="mdi-content-copy"
+                        :rounded="false"
+                        size="x-small"
+                        variant="text"
+                        @click="clone(element, index)"
+                      />
+                      <v-divider vertical />
+                      <v-btn
+                        class="custom-draggable-btn"
+                        color="pizazz"
+                        :data-index="index"
+                        icon="mdi-trash-can-outline"
+                        :rounded="false"
+                        size="x-small"
+                        variant="text"
+                        @click="remove(index)"
+                      />
+                    </div>
+                  </div>
                 </v-list-item>
               </div>
             </div>
@@ -73,11 +74,13 @@
   import { useBuilderStore } from '../../stores/builder'
 
   const { resolve } = useElementComponent()
-  const { addOrInsert, clone, remove } = useBuilder()
+  const {
+    addOrInsert,
+    clone,
+    remove,
+    start,
+    update,
+  } = useBuilder()
   const builderStore = useBuilderStore()
   const list = builderStore.$state.elements
-
-  function start () {
-    console.log('start')
-  }
 </script>

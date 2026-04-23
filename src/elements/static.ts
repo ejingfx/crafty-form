@@ -31,6 +31,7 @@ const fixed: BuilderElementData[] = [
     element: {
       type: 'heading',
       properties: {
+        alias: 'Form Heading',
         subtype: 'form',
         label: 'Form Heading',
         description: 'Some description',
@@ -53,6 +54,7 @@ const fixed: BuilderElementData[] = [
     element: {
       type: 'heading',
       properties: {
+        alias: 'Section Heading',
         subtype: 'section',
         label: 'Section heading',
         description: 'Some description',
@@ -75,6 +77,7 @@ const fixed: BuilderElementData[] = [
     element: {
       type: 'heading',
       properties: {
+        alias: 'Subsection Heading',
         subtype: 'subsection',
         label: 'Subsection heading',
         description: 'Some description',

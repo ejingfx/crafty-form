@@ -14,6 +14,7 @@
         item-key="element.key"
         :list="getGroupFiltered"
         :sort="false"
+        @end="end"
         @start="stage"
       >
         <template #item="{ element }">
@@ -36,6 +37,7 @@
   import draggable from 'vuedraggable'
   import { useBuilder } from '../../composables/useBuilder'
   const {
+    end,
     stage,
     getGroupFiltered,
     getSearchFiltered,

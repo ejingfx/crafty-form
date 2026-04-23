@@ -5,7 +5,8 @@ export type FieldDraggable = {
   type: string
   subtype?: string
   group: string
-  action?: {}
+  actions?: {}
+  options?: {}
 }
 
 export type FieldDraggableList = FieldDraggable[]
@@ -94,6 +95,7 @@ export interface Logic {
 
 // Base
 export interface BaseProperties {
+  alias?: string
   subtype?: string
   label: string
   description: string
@@ -132,7 +134,7 @@ export interface ContainerProperties extends BaseProperties {
 }
 
 export const headingSubtypes = ['form', 'section', 'subsection'] as const
-export const selectSubtypes = ['multiple'] as const
+export const selectSubtypes = ['single', 'multiple'] as const
 
 export type HeadingSubtype = typeof headingSubtypes[number]
 export type SelectSubtype = typeof selectSubtypes[number]
@@ -166,6 +168,7 @@ export type RadioOption = {
   label: string
   value: string
 }
+
 export type RadioOptions = {
   default_value: string
   choices: [RadioOption, RadioOption, ...RadioOption[]]
@@ -330,6 +333,7 @@ export type HeadingElement = {
 
 export const elementWithSubtypes = [
   'heading',
+  'select',
 ] as const
 export type ElementsWithSubtypes = Extract<StaticType, 'heading'>
 

@@ -192,7 +192,40 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'select',
       properties: {
+        subtype: 'single',
         label: 'Select label',
+        description: '',
+        placeholder: '',
+      },
+      options: {
+        default_value: 'Option 1',
+        clearable: true,
+        chips: true,
+        multiple: true,
+        accept_input: true,
+        choices: [
+          'Option 1',
+          'Option 2',
+          'Option 3',
+          'Option 4',
+        ],
+      },
+      layout: {
+        position: 'left',
+      },
+      attributes: {
+        name: 'field',
+      },
+    },
+  },
+  {
+    type: 'select',
+    element: {
+      type: 'select',
+      properties: {
+        alias: 'Multiple Selection',
+        subtype: 'multiple',
+        label: 'Multiple selection label',
         description: '',
         placeholder: '',
       },
