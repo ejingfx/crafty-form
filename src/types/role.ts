@@ -1,9 +1,9 @@
-import type { AuditType } from '@/types/audit'
+import type { Audit } from '@/types/audit'
 
 export interface Role {
   id: number
   name: string
-  audit: AuditType
+  audit: Audit
   created_at: string
   updated_at: string
 }

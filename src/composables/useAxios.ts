@@ -3,7 +3,7 @@ import { getCurrentInstance } from 'vue'
 
 export function useAxios (options?: AxiosRequestConfig) {
   const instance = getCurrentInstance()
-  const axios = instance?.proxy?.$axios
+  const axios = (instance?.proxy as any)?.$axios
 
   if (!axios) {
     throw new Error('Axios not found')

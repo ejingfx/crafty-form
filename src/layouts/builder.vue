@@ -1,6 +1,5 @@
 <template>
   <div>
-    <AppDataDrawer />
     <AppHeader />
     <v-main>
       <v-card

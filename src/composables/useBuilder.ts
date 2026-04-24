@@ -1,8 +1,6 @@
 import type {
-  BufferField,
   FieldGroup,
   FieldGroupData,
-  ResolveBufferField,
 } from '@/types/builder'
 import type {
   BuilderElementData,
@@ -11,6 +9,7 @@ import type {
   FieldDraggable,
   FieldDraggableList,
 } from '@/types/fields'
+import type { Form, FormChild } from '@/types/form'
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
 import { headingSubtypes } from '@/types/fields'
@@ -188,6 +187,17 @@ export function useBuilder () {
       : query
   })
 
+  const getMappedFormTree = computed<FormChild[]>(() => {
+    const { elements } = builderStore.$state
+    const mapped = elements.map((element: Element) => ({
+      icon: 'mdi-folder',
+      title: isWithSubtype(element.type) ? 'with' : element.type,
+      element,
+    } satisfies FormChild))
+
+    return mapped
+  })
+
   // Sidebar Search Element Field Filter
   const getSearchFiltered = computed(() => {
     return allFieldGroup.filter(item => {
@@ -215,6 +225,7 @@ export function useBuilder () {
     fieldGroupData,
     getAllFieldGroup,
     getGroupOrQueryFiltered,
+    getMappedFormTree,
     getSearchFiltered,
     insert,
     isWithSubtype,
