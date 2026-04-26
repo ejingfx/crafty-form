@@ -3,16 +3,19 @@ import type {
   BuilderData,
   FieldGroup,
 } from '@/types/builder'
-import type { Element } from '@/types/fields'
+import type { Element, Mode } from '@/types/fields'
 import _ from 'lodash'
-import { defineStore } from 'pinia'
+import { defineStore, storeToRefs } from 'pinia'
 import { v4 as uuidv4 } from 'uuid'
 import { toRaw } from 'vue'
+import { useTreeStore } from '../stores/tree'
 
 export const useBuilderStore = defineStore('builder', {
   state: (): BuilderData => ({
     elements: [],
-    settings: [],
+    settings: {
+      mode: 'editor',
+    },
     filterGroup: 'fields',
     searchFilterGroup: '',
     buffer: null,
@@ -21,6 +24,7 @@ export const useBuilderStore = defineStore('builder', {
     getBuffer: state => state.buffer,
     getElements: state => state.elements,
     getFilterGroup: state => state.filterGroup,
+    getMode: state => state.settings.mode,
     getSearchFilterGroup: state => state.searchFilterGroup,
   },
   actions: {
@@ -32,6 +36,14 @@ export const useBuilderStore = defineStore('builder', {
     },
     remove (payload: number) {
       _.pullAt(this.elements, [payload])
+      const treeStore = useTreeStore()
+      const { setActivated } = treeStore
+      const { getActivated } = storeToRefs(treeStore)
+
+      if (getActivated.value) {
+        setActivated(false)
+        console.log('setActivated?', getActivated.value)
+      }
     },
     clone (payload: Element, index: number) {
       const cloned = structuredClone(toRaw(payload))
@@ -47,6 +59,9 @@ export const useBuilderStore = defineStore('builder', {
     },
     setBuffer (payload: BufferField) {
       this.buffer = payload
+    },
+    setMode (payload: Mode) {
+      this.settings.mode = payload
     },
     setFilterGroup (payload: FieldGroup) {
       this.filterGroup = payload

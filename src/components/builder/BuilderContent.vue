@@ -1,5 +1,9 @@
 <template>
   <v-card
+    v-click-outside="{
+      handler: handleClickOutside,
+      include: includeClickOutside,
+    }"
     class="rounded-md"
     flat
     :min-height="list.length > 0 ? 'auto' : 300"
@@ -21,10 +25,18 @@
           <div
             :key="element.key"
             class="list-group-item"
+            :class="treeIndex === index ? 'list-group-item--active' : ''"
           >
             <div class="custom-draggable">
               <div class="custom-draggable-inner">
-                <v-list-item class="custom-draggable-component bg-transparent relative" dense>
+                <v-list-item
+                  class="custom-draggable-component bg-transparent relative"
+                  :data-index="index"
+                  :data-key="element.key"
+                  dense
+                  :ripple="false"
+                  @click="handleClick({ element, index, key: element.key })"
+                >
                   <component
                     :is="resolve(element.type)"
                     :data="element"
@@ -68,10 +80,13 @@
 </template>
 
 <script lang="ts" setup>
+  import { storeToRefs } from 'pinia'
   import draggable from 'vuedraggable'
   import { useBuilder } from '../../composables/useBuilder'
   import { useElementComponent } from '../../composables/useElementComponent'
+  import { useTree } from '../../composables/useTree'
   import { useBuilderStore } from '../../stores/builder'
+  import { useTreeStore } from '../../stores/tree'
 
   const { resolve } = useElementComponent()
   const {
@@ -83,4 +98,11 @@
   } = useBuilder()
   const builderStore = useBuilderStore()
   const list = builderStore.$state.elements
+  const {
+    handleClick,
+    handleClickOutside,
+    includeClickOutside,
+  } = useTree()
+  const treeStore = useTreeStore()
+  const treeIndex = storeToRefs(treeStore).index
 </script>

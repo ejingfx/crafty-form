@@ -6,6 +6,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'number',
       properties: {
+        icon: 'mdi-numeric',
         label: 'Number',
         description: '',
         placeholder: '',
@@ -25,6 +26,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'phone',
       properties: {
+        icon: 'mdi-phone',
         label: 'Phone',
         description: '',
         placeholder: '',
@@ -46,6 +48,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'text',
       properties: {
+        icon: 'mdi-text-short',
         label: 'Short text',
         description: '',
         placeholder: '',
@@ -57,6 +60,7 @@ const fields: BuilderElementData[] = [
       },
       attributes: {
         name: 'field',
+        readonly: true,
       },
     },
   },
@@ -65,6 +69,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'textarea',
       properties: {
+        icon: 'mdi-text-long',
         label: 'Long text',
         description: '',
         placeholder: '',
@@ -84,6 +89,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'email',
       properties: {
+        icon: 'mdi-email',
         label: 'Email',
         description: '',
         placeholder: '',
@@ -105,6 +111,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'password',
       properties: {
+        icon: 'mdi-lock-outline',
         label: 'Password',
         description: '',
         placeholder: '',
@@ -124,6 +131,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'checkbox',
       properties: {
+        icon: 'mdi-check',
         label: 'Checkbox',
         description: 'test',
         placeholder: '',
@@ -145,6 +153,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'radio',
       properties: {
+        icon: 'mdi-radiobox-marked',
         label: 'Radio group label',
         description: '',
         placeholder: '',
@@ -171,6 +180,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'switch',
       properties: {
+        icon: 'mdi-toggle-switch-outline',
         label: 'Switch label',
         description: '',
         placeholder: '',
@@ -192,6 +202,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'select',
       properties: {
+        icon: 'mdi-select',
         subtype: 'single',
         label: 'Select label',
         description: '',
@@ -223,6 +234,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'select',
       properties: {
+        icon: 'mdi-select-multiple',
         alias: 'Multiple Selection',
         subtype: 'multiple',
         label: 'Multiple selection label',

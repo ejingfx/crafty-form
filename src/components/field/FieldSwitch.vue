@@ -5,6 +5,7 @@
       hide-details
       :inset="props.data.properties.inset ?? null"
       :label="props.data.properties.label"
+      :readonly="props.data.attributes.readonly ?? false"
     ></v-switch>
   </v-card>
 </template>

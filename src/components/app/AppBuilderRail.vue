@@ -8,7 +8,7 @@
   >
     <v-list>
       <v-list-item
-        prepend-avatar="https://randomuser.me/api/portraits/women/75.jpg"
+        prepend-avatar="@/assets/no-image.jpg"
       ></v-list-item>
     </v-list>
 

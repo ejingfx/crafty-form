@@ -101,3 +101,13 @@
     }
   }
 }
+// active selected tree item
+.list-group-item--active .custom-draggable-component {
+  &::before {
+    opacity: 1;
+  }
+  .custom-draggable-element,
+  .custom-draggable-actions {
+    opacity: 1;
+  }
+}

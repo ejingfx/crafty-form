@@ -6,6 +6,7 @@ const structure: BuilderElementData[] = [
     element: {
       type: 'container',
       properties: {
+        icon: '',
         label: 'Container',
         description: 'A container to group elements',
         placeholder: '',

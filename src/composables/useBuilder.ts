@@ -9,9 +9,9 @@ import type {
   FieldDraggable,
   FieldDraggableList,
 } from '@/types/fields'
-import type { Form, FormChild } from '@/types/form'
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
+import { useTreeStore } from '@/stores/tree'
 import { headingSubtypes } from '@/types/fields'
 import { useElement } from '../composables/useElement'
 import { elementWithSubtypes } from '../types/fields'
@@ -19,6 +19,7 @@ import { elementWithSubtypes } from '../types/fields'
 export function useBuilder () {
   const builderStore = useBuilderStore()
   const elements = useElement()
+  const treeStore = useTreeStore()
 
   const loadElementInit = (type: string) => {
     const initElements = elements.initElements
@@ -43,7 +44,6 @@ export function useBuilder () {
   }
 
   const end = () => {
-    console.log('end')
     builderStore.clearBuffer()
   }
 
@@ -63,7 +63,6 @@ export function useBuilder () {
     }
   }
   const stage = (element: FieldDraggable) => {
-    console.log('stage')
     if (builderStore.$state.buffer === null) {
       builderStore.$state.buffer = element
     }
@@ -89,7 +88,7 @@ export function useBuilder () {
     const element = subtype === undefined
       ? loadElementInit(type)[0]?.element
       : loadElementInitWithSubtype(type, subtype)[0].element
-    const length = builderStore.$state.elements.length
+    // const length = builderStore.$state.elements.length
 
     // console.log('insert? length, index, type, subtype...', length, index, type, subtype)
     builderStore.insert(index, element)
@@ -129,7 +128,7 @@ export function useBuilder () {
     // { icon: 'mdi-check', title: 'Link', subtitle: 'Link to another website', type: 'text', group: 'fields', actions: {}, options: {} },
     { icon: 'mdi-radiobox-marked', title: 'Radio', subtitle: 'Select from set of options', type: 'radio', group: 'fields', actions: {}, options: {} },
     { icon: 'mdi-select', title: 'Select', subtitle: 'Select a value', type: 'select', subtype: 'single', group: 'fields', actions: {}, options: {} },
-    { icon: 'mdi-select', title: 'Multiple Selection', subtitle: 'Select multiple or add more values', type: 'select', subtype: 'multiple', group: 'fields', actions: {}, options: {} },
+    { icon: 'mdi-select-multiple', title: 'Multiple Selection', subtitle: 'Select multiple or add more values', type: 'select', subtype: 'multiple', group: 'fields', actions: {}, options: {} },
     { icon: 'mdi-check', title: 'Checkbox', subtitle: '', type: 'checkbox', group: 'fields', actions: {}, options: {} },
     // { icon: 'mdi-check', title: 'Single Comparison', subtitle: '', type: 'text', group: 'fields', actions: {}, options: {} },
     // { icon: 'mdi-check', title: 'Multiple Comparison', subtitle: '', type: 'text', group: 'fields', actions: {}, options: {} },
@@ -187,17 +186,6 @@ export function useBuilder () {
       : query
   })
 
-  const getMappedFormTree = computed<FormChild[]>(() => {
-    const { elements } = builderStore.$state
-    const mapped = elements.map((element: Element) => ({
-      icon: 'mdi-folder',
-      title: isWithSubtype(element.type) ? 'with' : element.type,
-      element,
-    } satisfies FormChild))
-
-    return mapped
-  })
-
   // Sidebar Search Element Field Filter
   const getSearchFiltered = computed(() => {
     return allFieldGroup.filter(item => {
@@ -225,7 +213,6 @@ export function useBuilder () {
     fieldGroupData,
     getAllFieldGroup,
     getGroupOrQueryFiltered,
-    getMappedFormTree,
     getSearchFiltered,
     insert,
     isWithSubtype,

@@ -4,7 +4,9 @@ import { defineStore } from 'pinia'
 export const useFieldStore = defineStore('fieldStore', {
   state: (): FieldsData => ({
     elements: [],
-    settings: [],
+    settings: {
+      mode: 'editor',
+    },
   }),
   getters: {
     getMenuList: (state: FieldsData) => state,

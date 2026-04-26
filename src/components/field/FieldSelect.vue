@@ -9,6 +9,7 @@
         :items="props.data.options.choices"
         :label="props.data.properties.label"
         :multiple="props.data.options.multiple"
+        :readonly="props.data.attributes.readonly ?? false"
         variant="solo-filled"
       ></v-combobox>
     </template>
@@ -19,6 +20,7 @@
         hide-details
         :items="props.data.options.choices"
         :label="props.data.properties.label"
+        :readonly="props.data.attributes.readonly ?? false"
         variant="solo-filled"
       ></v-select>
     </template>

@@ -8,6 +8,7 @@
       :max="props.data.properties.max"
       :min="props.data.properties.min"
       :placeholder="props.data.properties.placeholder"
+      :readonly="props.data.attributes.readonly ?? false"
       type="number"
       variant="solo-filled"
     >

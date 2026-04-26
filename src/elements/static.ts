@@ -6,6 +6,7 @@ const fixed: BuilderElementData[] = [
     element: {
       type: 'button',
       properties: {
+        icon: 'mdi-check-bold',
         label: '',
         description: '',
         placeholder: '',
@@ -31,6 +32,7 @@ const fixed: BuilderElementData[] = [
     element: {
       type: 'heading',
       properties: {
+        icon: 'mdi-format-header-1',
         alias: 'Form Heading',
         subtype: 'form',
         label: 'Form Heading',
@@ -54,6 +56,7 @@ const fixed: BuilderElementData[] = [
     element: {
       type: 'heading',
       properties: {
+        icon: 'mdi-format-header-2',
         alias: 'Section Heading',
         subtype: 'section',
         label: 'Section heading',
@@ -77,6 +80,7 @@ const fixed: BuilderElementData[] = [
     element: {
       type: 'heading',
       properties: {
+        icon: 'mdi-format-header-3',
         alias: 'Subsection Heading',
         subtype: 'subsection',
         label: 'Subsection heading',

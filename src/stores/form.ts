@@ -20,19 +20,21 @@ export const useFormStore = defineStore('form', {
     init () {
       const root: FormRoot = {
         key: uuidv4(),
-        icon: 'mdi-folder',
+        icon: 'mdi-poll',
         title: 'Sample Form',
         element: null,
         children: [],
       }
-      this.data.push(root)
+      if (this.data.length <= 0) {
+        this.data.push(root)
+      }
     },
     mapElementsToChildren () {
       const { elements } = useBuilderStore()
 
       const mapped = elements.map((element: any) => ({
         key: uuidv4(),
-        icon: 'mdi-folder',
+        icon: element.properties.icon,
         title: element.type,
         element,
         children: [],

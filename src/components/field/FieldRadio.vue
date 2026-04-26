@@ -4,6 +4,7 @@
       hide-details
       :inline="data.properties.inline ?? null"
       :label="data.properties.hide_group_label ? null : data.properties.label"
+      :readonly="props.data.attributes.readonly ?? false"
     >
       <template v-for="(item, i) in data.options.choices" :key="i">
         <v-radio

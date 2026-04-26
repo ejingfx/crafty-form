@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 export type FieldDraggable = {
   icon: string
   title: string
@@ -97,6 +99,7 @@ export interface Logic {
 export interface BaseProperties {
   alias?: string
   subtype?: string
+  icon: string
   label: string
   description: string
   placeholder?: string
@@ -104,6 +107,7 @@ export interface BaseProperties {
 }
 export interface Attributes {
   name: string
+  readonly?: boolean
 }
 // Per Field
 export interface TextProperties extends BaseProperties {
@@ -352,9 +356,16 @@ export type Element = | TextElement
   | ButtonElement // Static
   | HeadingElement
 
+export const modeValues = ['editor', 'preview'] as const
+export type Mode = typeof modeValues[number]
+
+export type FieldsSettings = {
+  mode: Mode
+}
+
 export interface FieldsData {
   elements: Element[]
-  settings: string[]
+  settings: FieldsSettings
 }
 
 // For Builder Data

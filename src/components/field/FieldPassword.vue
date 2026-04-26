@@ -4,6 +4,7 @@
       clearable
       :label="props.data.properties.label"
       :placeholder="props.data.properties.placeholder"
+      :readonly="props.data.attributes.readonly ?? false"
       type="password"
       variant="solo-filled"
     >

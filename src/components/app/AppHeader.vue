@@ -25,6 +25,8 @@
     </v-app-bar-nav-icon>
     <AppBreadcrumbs />
     <v-spacer></v-spacer>
+
+    <v-spacer></v-spacer>
     <v-btn
       v-if="isBuilderPage"
       color="warning"
@@ -37,7 +39,6 @@
 </template>
 
 <script lang="ts" setup>
-  // import { storeToRefs } from 'pinia'
   import type { RouteLocationNormalized } from 'vue-router'
   import { ref, watch } from 'vue'
   import { useRoute } from 'vue-router'
@@ -46,7 +47,6 @@
   const appStore = useDrawerStore()
   const route = useRoute()
   const isBuilderPage = ref(false)
-  // const { drawer } = storeToRefs(appStore)
   const { toggleDrawer } = appStore
 
   watch(

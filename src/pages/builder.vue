@@ -1,9 +1,10 @@
 <template>
   <v-row>
-    <BuilderElementsSidebar />
+    <BuilderElementSidebar />
 
     <AppBuilderRail />
-    <BuilderTreeSidebar />
+    <BuilderFormElementSidebar class="include-outside-click" />
+    <BuilderTreeSidebar class="include-outside-click" />
   </v-row>
 </template>
 

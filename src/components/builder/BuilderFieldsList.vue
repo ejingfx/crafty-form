@@ -21,7 +21,7 @@
             class="py-4 pl-6 pr-4"
           >
             <template v-slot:prepend>
-              <v-icon class="bg-red pa-4">{{ element.icon }}</v-icon>
+              <v-icon class="text-pizazz pa-4 rounded border border-pizazz">{{ element.icon }}</v-icon>
             </template>
             <v-list-item-title>{{ element.title }}</v-list-item-title>
             <v-list-item-subtitle class="text-[8px]">{{ element.subtitle }}</v-list-item-subtitle>

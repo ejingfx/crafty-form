@@ -19,6 +19,7 @@ export type FieldGroupFilter = {
 export type FieldGroupData = FieldGroupFilter[]
 export type BufferField = | FieldDraggable | null
 export type ResolveBufferField = | Element | null
+
 export interface BuilderData extends FieldsData {
   filterGroup: FieldGroup
   searchFilterGroup: string
