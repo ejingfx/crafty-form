@@ -52,7 +52,6 @@
   const { data } = formStore
   const { getIndex, handleClick } = useTree()
   const activatedKey = ref<({ key?: string | undefined })[]>([])
-  const { activated } = storeToRefs(treeStore)
 
   // Initialize form
   onMounted(() => {

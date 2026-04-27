@@ -25,7 +25,7 @@ const elementComponentMap = {
 } as const
 
 export function useElementComponent () {
-  function resolve (type: keyof typeof elementComponentMap) {
+  const resolve = (type: keyof typeof elementComponentMap) => {
     return elementComponentMap[type] ?? elementComponentMap['fallback']
   }
 
