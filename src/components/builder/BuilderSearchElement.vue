@@ -3,6 +3,7 @@
     <v-card-text>
       <v-text-field
         v-model="builderStore.$state.searchFilterGroup"
+        bg-color="bg-dove-gray"
         class="builder-search-el"
         clearable
         dark

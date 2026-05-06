@@ -65,7 +65,7 @@ const fixed: BuilderElementData[] = [
       },
       layout: {
         column: 12,
-        size: 'small',
+        size: 'default',
         position: 'left',
         space_top: 0,
         space_bottom: 0,
@@ -89,7 +89,7 @@ const fixed: BuilderElementData[] = [
       },
       layout: {
         column: 12,
-        size: 'x-small',
+        size: 'default',
         position: 'left',
         space_top: 0,
         space_bottom: 0,

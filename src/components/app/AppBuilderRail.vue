@@ -6,13 +6,13 @@
     permanent
     rail
   >
-    <v-list>
+    <!-- <v-list>
       <v-list-item
         prepend-avatar="@/assets/no-image.jpg"
       ></v-list-item>
-    </v-list>
+    </v-list> -->
 
-    <v-divider></v-divider>
+    <v-divider />
   </v-navigation-drawer>
 </template>
 

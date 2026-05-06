@@ -1,7 +1,6 @@
 <template>
   <v-expansion-panel-text>
-    validation panel
-    {{ props.data }}
+    <!-- <pre>{{ props.data?.validation }}</pre> -->
   </v-expansion-panel-text>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
   <v-expansion-panel-text>
-    logic panel
-    {{ props.data }}
+    <!-- <pre>{{ props.data?.logic }}</pre> -->
   </v-expansion-panel-text>
 </template>
 

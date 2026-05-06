@@ -1,6 +1,10 @@
 <template>
   <v-sheet clasas="elevation-0 pa-1" color="transparent">
-    <div v-show="showSearchFilterGroup" class="d-flex align-center flex-column">
+    <v-divider />
+    <div
+      v-show="showSearchFilterGroup"
+      class="d-flex align-center flex-column pt-5"
+    >
       <v-btn-group
         density="compact"
         divided

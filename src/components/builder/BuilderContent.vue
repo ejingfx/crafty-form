@@ -27,6 +27,7 @@
             class="list-group-item"
             :class="treeIndex === index ? 'list-group-item--active' : ''"
           >
+            <!-- <pre>{{ list.filter((el) => el.key === ) }}</pre> -->
             <div class="custom-draggable">
               <div class="custom-draggable-inner">
                 <v-list-item
@@ -35,7 +36,7 @@
                   :data-key="element.key"
                   dense
                   :ripple="false"
-                  @click="handleClick({ element, index, key: element.key })"
+                  @click="handleClick({ element: list[index], index, key: element.key })"
                 >
                   <component
                     :is="resolve(element.type)"
@@ -46,7 +47,7 @@
                     <div class="custom-draggable-element bg-pizazz">
                       <span class="px-1 text-white text-capitalize">{{ element.properties?.alias ?? element.type }}</span>
                     </div>
-                    <div class="custom-draggable-actions">
+                    <div class="custom-draggable-actions include-outside-click">
                       <v-btn
                         class="custom-draggable-btn"
                         color="pizazz"

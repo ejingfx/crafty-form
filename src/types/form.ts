@@ -30,6 +30,14 @@ export type FormTreeData = {
   data: (FormRoot | FormChild)[]
 }
 
+export type FormFieldList = {
+  title: string
+  expanded: boolean
+  type: string
+  value: boolean
+  data: any
+}
+
 export interface Form extends FormTreeData {
   id: number | null
   workspace: number | null

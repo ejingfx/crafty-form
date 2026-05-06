@@ -12,7 +12,9 @@ export function useTree () {
     setActiveTreeItem,
   } = treeStore
   const { data } = storeToRefs(formStore)
-  const { activated } = storeToRefs(treeStore)
+  const {
+    activated,
+  } = storeToRefs(treeStore)
 
   const getIndex = (key: string) => {
     const root = data.value[0]
@@ -24,7 +26,11 @@ export function useTree () {
 
   const handleClick = (data: Omit<ActiveTreeItem, 'activated'>) => {
     const { element, key, index } = data
-    setActiveTreeItem({ activated: true, element, key, index })
+    // console.log('handleClick data w/ element', element)
+    if (element) {
+      // console.log('handleClick data w/ element', index, element)
+      setActiveTreeItem({ activated: true, element, key, index })
+    }
   }
 
   const handleClickOutside = () => {

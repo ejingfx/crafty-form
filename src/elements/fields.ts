@@ -202,6 +202,7 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'select',
       properties: {
+        alias: 'Single Select',
         icon: 'mdi-select',
         subtype: 'single',
         label: 'Select label',
@@ -226,6 +227,7 @@ const fields: BuilderElementData[] = [
       },
       attributes: {
         name: 'field',
+        readonly: true,
       },
     },
   },
@@ -259,6 +261,7 @@ const fields: BuilderElementData[] = [
       },
       attributes: {
         name: 'field',
+        readonly: true,
       },
     },
   },

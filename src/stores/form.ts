@@ -14,6 +14,7 @@ export const useFormStore = defineStore('form', {
     getId: state => state.id,
     getData: state => state.data,
     getName: state => state.name,
+    getRoot: state => state.data[0],
     getWorkspace: state => state.workspace,
   },
   actions: {
@@ -21,7 +22,7 @@ export const useFormStore = defineStore('form', {
       const root: FormRoot = {
         key: uuidv4(),
         icon: 'mdi-poll',
-        title: 'Sample Form',
+        title: 'Form',
         element: null,
         children: [],
       }
@@ -32,13 +33,19 @@ export const useFormStore = defineStore('form', {
     mapElementsToChildren () {
       const { elements } = useBuilderStore()
 
-      const mapped = elements.map((element: any) => ({
-        key: uuidv4(),
-        icon: element.properties.icon,
-        title: element.type,
-        element,
-        children: [],
-      }))
+      const mapped = elements.map((element: any) => {
+        // For later
+        // const hasAlias = typeof element.properties?.alias === 'string'
+        // const hasSubtype = typeof element.properties?.subtype === 'string'
+
+        return {
+          key: uuidv4(),
+          icon: element.properties.icon,
+          title: element.type,
+          element: element.element,
+          children: [],
+        }
+      })
 
       if (this.$state.data.length === 0) {
         return

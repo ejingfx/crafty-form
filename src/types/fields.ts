@@ -1,5 +1,3 @@
-import type { Ref } from 'vue'
-
 export type FieldDraggable = {
   icon: string
   title: string
@@ -14,60 +12,77 @@ export type FieldDraggable = {
 export type FieldDraggableList = FieldDraggable[]
 
 // Element Group
-export type FieldType = 'checkbox'
-  | 'email'
-  | 'number'
-  | 'phone'
-  | 'select'
-  | 'text'
-  | 'textarea'
-  | 'password'
-  | 'checkbox'
-  | 'radio'
-  | 'switch'
-  | 'select'
+export const fieldType = [
+  'checkbox',
+  'email',
+  'number',
+  'phone',
+  'select',
+  'text',
+  'textarea',
+  'password',
+  'checkbox',
+  'radio',
+  'switch',
+  'select',
+] as const
+export type FieldType = typeof fieldType[number]
 
-export type StructureType = 'container'
-  | 'tabs'
+export const structureType = ['container', 'tabs'] as const
+export type StructureType = typeof structureType[number]
 
-export type StaticType = 'button'
-  | 'heading'
+export const staticType = ['button', 'heading'] as const
+export type StaticType = typeof staticType[number]
 
-export type Position = 'left' | 'top' | 'bottom' | 'right' | 'start' | 'end'
+export const position = ['left', 'top', 'bottom', 'right', 'start', 'center', 'middle', 'end'] as const
+export type Position = typeof position[number]
 
-export type Size = 'x-small' | 'small' | 'default' | 'large' | 'x-large'
+export const size = ['x-small', 'small', 'default', 'large', 'x-large'] as const
+export type Size = typeof size[number]
 
-export type ValidationType = 'custom'
-  | 'email'
-  | 'min'
-  | 'max'
-  | 'number'
-  | 'required'
+export const actions = ['show', 'hide', 'enable', 'disable'] as const
+export type Actions = typeof actions[number]
+
+export const validationType = ['custom', 'email', 'min', 'max', 'number', 'required'] as const
+export type ValidationType = typeof validationType[number]
+
+export const columnType = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const
+export type ColumnType = typeof columnType[number]
+
+export const layoutSize = ['default', 'compact', 'comfortable'] as const
+export type LayoutSize = typeof layoutSize[number]
 
 export interface Layout {
-  column: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-  size: Size
-  position: Extract<Position, 'left' | 'top'>
+  column: ColumnType
+  size?: LayoutSize
+  position: Position
 }
+export const spaceType = [0, 1, 2, 3, 4] as const
+export type SpaceType = number | typeof spaceType[number]
 export interface HeadingLayout extends Layout {
-  space_top: number | 0 | 1 | 2 | 3
-  space_bottom: number | 0 | 1 | 2 | 3
+  space_top: SpaceType
+  space_bottom: SpaceType
 }
 
-export type CheckboxLayout = {
-  position: Extract<Position, 'left' | 'right'>
+export const horizontalPositionType = ['left', 'center', 'right'] as const satisfies readonly Position[]
+export const verticalPositionType = ['top', 'center', 'bottom'] as const satisfies readonly Position[]
+export type HorizontalPositionType = typeof horizontalPositionType[number]
+export type VerticalPositionType = typeof verticalPositionType[number]
+
+export interface CheckboxLayout extends Omit<Layout, 'position' | 'column'> {
+  position: HorizontalPositionType
 }
 
-export type RadioLayout = {
-  position: Extract<Position, 'left' | 'right'>
+export interface RadioLayout extends Omit<Layout, 'position' | 'column'> {
+  position: HorizontalPositionType
 }
 
-export type SwitchLayout = {
-  position: Extract<Position, 'left' | 'right'>
+export interface SwitchLayout extends Omit<Layout, 'position' | 'column'> {
+  position: HorizontalPositionType
 }
 
-export type SelectLayout = {
-  position: Extract<Position, 'left' | 'right'>
+export interface SelectLayout extends Omit<Layout, 'position' | 'column'> {
+  position: HorizontalPositionType
 }
 
 // Validation
@@ -79,20 +94,26 @@ export interface ValidationRule {
 
 export type Validation = ValidationRule[]
 
+export const operatorType = [
+  'equals',
+  'not_equals',
+  'greater_than',
+  'less_than',
+  'greater_than_or_equals',
+  'less_than_or_equals',
+] as const
+export type OperationType = typeof operatorType[number]
 export interface LogicCondition {
   field: string
-  operator: 'equals'
-    | 'not_equals'
-    | 'greater_than'
-    | 'less_than'
-    | 'greater_than_or_equals'
-    | 'less_than_or_equals'
+  operator: OperationType
   value: any
 }
 
+export const logicAction = ['show', 'hide', 'enable', 'disable'] as const
+export type LogicActionType = typeof logicAction[number]
 export interface Logic {
   conditions: LogicCondition[]
-  action: 'show' | 'hide' | 'enable' | 'disable'
+  action: LogicActionType
 }
 
 // Base
@@ -138,16 +159,18 @@ export interface ContainerProperties extends BaseProperties {
 }
 
 export const headingSubtypes = ['form', 'section', 'subsection'] as const
-export const selectSubtypes = ['single', 'multiple'] as const
-
 export type HeadingSubtype = typeof headingSubtypes[number]
+
+export const selectSubtypes = ['single', 'multiple'] as const
 export type SelectSubtype = typeof selectSubtypes[number]
 
 export interface HeadingProperties extends BaseProperties {
   subtype: HeadingSubtype
 }
 
-export type ButtonOptionsType = 'primary' | 'secondary' | 'warning' | 'danger'
+export const buttonOptions = ['primary', 'secondary', 'warning', 'danger'] as const
+export type ButtonOptionsType = typeof buttonOptions[number]
+
 export type ButtonOptions = {
   label: string
   type: ButtonOptionsType
@@ -335,10 +358,7 @@ export type HeadingElement = {
   attributes: Attributes
 }
 
-export const elementWithSubtypes = [
-  'heading',
-  'select',
-] as const
+export const elementWithSubtypes = ['heading', 'select'] as const
 export type ElementsWithSubtypes = Extract<StaticType, 'heading'>
 
 export type Element = | TextElement
@@ -370,6 +390,6 @@ export interface FieldsData {
 
 // For Builder Data
 export type BuilderElementData = {
-  type: FieldType | StructureType | StaticType
+  type: | FieldType | StructureType | StaticType
   element: Element
 }

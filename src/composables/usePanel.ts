@@ -15,7 +15,7 @@ export function usePanel () {
     return panelComponentMap[type] ?? panelComponentMap[type]
   }
 
-  const toggle = (length: number) => {
+  const generate = (length: number) => {
     return Array
       .from({ length })
       .reduce((acc: number[], _: any, index: number) => {
@@ -26,6 +26,6 @@ export function usePanel () {
 
   return {
     resolve,
-    toggle,
+    generate,
   }
 }

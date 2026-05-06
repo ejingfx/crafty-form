@@ -11,15 +11,20 @@ import type {
 } from '@/types/fields'
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
-import { useTreeStore } from '@/stores/tree'
-import { headingSubtypes } from '@/types/fields'
+// import { useTreeStore } from '@/stores/tree'
+import { elementWithSubtypes, headingSubtypes } from '@/types/fields'
 import { useElement } from '../composables/useElement'
-import { elementWithSubtypes } from '../types/fields'
 
 export function useBuilder () {
   const builderStore = useBuilderStore()
   const elements = useElement()
-  const treeStore = useTreeStore()
+  // const treeStore = useTreeStore()
+
+  const applyFilterType = (filter: any) => {
+    const data: any = []
+
+    return data.filter((item: any) => item === filter)
+  }
 
   const loadElementInit = (type: string) => {
     const initElements = elements.initElements
@@ -40,6 +45,7 @@ export function useBuilder () {
     const element = subtype === undefined
       ? loadElementInit(type)[0].element
       : loadElementInitWithSubtype(type, subtype)[0].element
+    // console.log('add? type, subtype...', type, subtype, element)
     builderStore.add(element)
   }
 
@@ -90,13 +96,14 @@ export function useBuilder () {
       : loadElementInitWithSubtype(type, subtype)[0].element
     // const length = builderStore.$state.elements.length
 
-    // console.log('insert? length, index, type, subtype...', length, index, type, subtype)
+    // console.log('insert? length, index, type, subtype...', length, index, type, subtype, element)
     builderStore.insert(index, element)
   }
   const push = (type: string, subtype?: string) => {
     isWithSubtype(type)
       ? add(type, subtype)
       : add(type)
+
     builderStore.clearBuffer()
   }
   const update = (event: any) => {
@@ -208,6 +215,7 @@ export function useBuilder () {
     add,
     addOrInsert,
     allFieldGroup,
+    applyFilterType,
     clone,
     end,
     fieldGroupData,
