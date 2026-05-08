@@ -38,12 +38,12 @@
             <template v-for="item in layoutSize" :key="item">
               <v-btn
                 class="d-flex space-evenly text-capitalize"
-                :color="element.layout.size === item ? 'pizazz' : 'white'"
+                :color="(element.layout as Record<string, unknown>).size === item ? 'pizazz' : 'white'"
                 density="compact"
                 :ripple="false"
                 size="x-small"
                 :text="item"
-                @click="element.layout.size = item"
+                @click="(element.layout as Record<string, unknown>).size = item"
               />
             </template>
           </v-btn-group>
@@ -66,13 +66,13 @@
             <template v-for="item in horizontalPositionType" :key="item">
               <v-btn
                 class="d-flex space-evenly text-capitalize"
-                :color="element.layout.position === item ? 'pizazz' : 'white'"
+                :color="(element.layout as Record<string, unknown>).position === item ? 'pizazz' : 'white'"
                 :data-position="item"
                 density="compact"
                 :ripple="false"
                 size="x-small"
                 :text="item"
-                @click="element.layout.position = item"
+                @click="(element.layout as Record<string, unknown>).position = item"
               />
             </template>
           </v-btn-group>

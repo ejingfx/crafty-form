@@ -360,6 +360,9 @@ export type HeadingElement = {
 
 export const elementWithSubtypes = ['heading', 'select'] as const
 export type ElementsWithSubtypes = Extract<StaticType, 'heading'>
+export interface GenericElement {
+  [key: string]: unknown
+}
 
 export type Element = | TextElement
   | TextareaElement
@@ -375,7 +378,7 @@ export type Element = | TextElement
   | ContainerElement // Structure
   | ButtonElement // Static
   | HeadingElement
-
+  | GenericElement
 export const modeValues = ['editor', 'preview'] as const
 export type Mode = typeof modeValues[number]
 

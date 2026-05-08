@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 export const useTreeStore = defineStore('tree', {
   state: (): ActiveTreeItem => ({
     activated: false,
-    element: null,
+    element: {},
     key: null,
     index: null,
   }),
@@ -15,8 +15,7 @@ export const useTreeStore = defineStore('tree', {
   actions: {
     clear () {
       this.activated = false
-      this.element = null
-      this.element = null
+      this.element = {}
       this.key = null
       this.index = null
     },

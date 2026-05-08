@@ -112,11 +112,14 @@
   })
 
   function getMappedListData () {
-    console.log('xxx', element.value)
+    const el = element.value as Record<string, unknown>
+
     return list.value.map(item => {
       return {
         ...item,
-        data: { [item.title]: element.value[item.title] ?? {} },
+        data: {
+          [item.title]: el[item.title] ?? null,
+        },
       }
     })
   }

@@ -1,7 +1,8 @@
-import type { Element } from './fields'
+import type { Element, GenericElement } from './fields'
+
 export type FormTree = {
   activated: boolean
-  element: Element | undefined
+  element: Element | GenericElement
 }
 
 export interface ActiveTreeItem extends FormTree {

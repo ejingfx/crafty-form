@@ -12,8 +12,8 @@ import type {
 import { computed } from 'vue'
 import { useBuilderStore } from '@/stores/builder'
 // import { useTreeStore } from '@/stores/tree'
-import { elementWithSubtypes, headingSubtypes } from '@/types/fields'
 import { useElement } from '../composables/useElement'
+import { elementWithSubtypes, headingSubtypes } from '../types/fields'
 
 export function useBuilder () {
   const builderStore = useBuilderStore()
@@ -34,7 +34,10 @@ export function useBuilder () {
   const loadElementInitWithSubtype = (type: string, subtype?: string) => {
     const initElements = elements.initElements
     return initElements
-      .filter((el: BuilderElementData) => el.type === type && el.element.properties.subtype === subtype)
+      .filter((el: BuilderElementData) => {
+        const properties = el.element.properties as Record<string, unknown>
+        return el.type === type && properties.subtype === subtype
+      })
   }
 
   const isWithSubtype = (item: string) => {
