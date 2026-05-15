@@ -11,6 +11,7 @@
         </v-col>
         <v-col cols="7" md="7" sm="">
           <v-number-input
+            v-model="(element.layout as Record<string, unknown>).column as number"
             bg-color="dove-gray"
             class=""
             control-variant="stacked"

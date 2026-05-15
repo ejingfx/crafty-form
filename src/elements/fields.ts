@@ -1,4 +1,12 @@
-import type { BuilderElementData } from '../types/fields'
+import type {
+  BuilderElementData,
+} from '../types/fields'
+import defaultValidations from '../elements/validation'
+
+const {
+  email,
+  required,
+} = defaultValidations
 
 const fields: BuilderElementData[] = [
   {
@@ -89,12 +97,23 @@ const fields: BuilderElementData[] = [
     element: {
       type: 'email',
       properties: {
+        value: 'sample@email.com',
         icon: 'mdi-email',
         label: 'Email',
         description: '',
         placeholder: '',
         disabled: false,
         readonly: false,
+      },
+      validation: {
+        type: 'email',
+        custom_rules: [
+          { name: 'email', status: true, fn: email },
+        ],
+        predefined_rules: [
+          { name: 'required', status: true, fn: required },
+        ],
+        rules: [],
       },
       layout: {
         column: 12,

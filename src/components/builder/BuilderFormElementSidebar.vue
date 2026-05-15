@@ -31,6 +31,7 @@
             :ripple="false"
             size="x-small"
             variant="plain"
+            @click="clone(element, index as number)"
           />
           <v-btn
             color="white"
@@ -39,6 +40,7 @@
             :ripple="false"
             size="small"
             variant="plain"
+            @click="remove(index as number)"
           />
           <v-btn
             color="white"
@@ -78,12 +80,14 @@
   import type { PanelType } from '@/types/panel'
   import { storeToRefs } from 'pinia'
   import { onMounted, ref, watch } from 'vue'
+  import { useBuilder } from '../../composables/useBuilder'
   import { usePanel } from '../../composables/usePanel'
   import { useTreeStore } from '../../stores/tree'
 
   const title = ref('')
   const treeStore = useTreeStore()
   const panel = usePanel()
+  const { clone, remove } = useBuilder()
   const expand = ref([0])
   const list = ref([
     { title: 'properties', expanded: true, type: 'properties', value: true, data: {} },

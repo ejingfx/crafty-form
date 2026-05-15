@@ -43,7 +43,7 @@ export type Size = typeof size[number]
 export const actions = ['show', 'hide', 'enable', 'disable'] as const
 export type Actions = typeof actions[number]
 
-export const validationType = ['custom', 'email', 'min', 'max', 'number', 'required'] as const
+export const validationType = ['custom', 'email', 'min', 'max', 'number', 'required', 'text'] as const
 export type ValidationType = typeof validationType[number]
 
 export const columnType = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const
@@ -86,13 +86,20 @@ export interface SelectLayout extends Omit<Layout, 'position' | 'column'> {
 }
 
 // Validation
-export interface ValidationRule {
-  type: ValidationType
-  value?: any
-  message?: string
+export type ValidationRule = (name: string, value: any) => true | string
+
+export type NamedRules = {
+  name: string
+  status: boolean
+  fn: ValidationRule
 }
 
-export type Validation = ValidationRule[]
+export type Validation = {
+  type: ValidationType
+  predefined_rules: NamedRules[]
+  rules?: ValidationRule[]
+  custom_rules: ValidationRule[]
+}
 
 export const operatorType = [
   'equals',
@@ -118,6 +125,7 @@ export interface Logic {
 
 // Base
 export interface BaseProperties {
+  value: any
   alias?: string
   subtype?: string
   icon: string

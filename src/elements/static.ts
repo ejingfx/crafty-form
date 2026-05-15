@@ -7,7 +7,7 @@ const fixed: BuilderElementData[] = [
       type: 'button',
       properties: {
         icon: 'mdi-check-bold',
-        label: '',
+        label: 'Submit',
         description: '',
         placeholder: '',
       },
@@ -20,7 +20,7 @@ const fixed: BuilderElementData[] = [
       layout: {
         column: 12,
         size: 'default',
-        position: 'left',
+        position: 'center',
       },
       attributes: {
         name: 'heading',

@@ -11,6 +11,7 @@
         </v-col>
         <v-col cols="7" md="7" sm="">
           <v-text-field
+            v-model="(element.properties as Record<string, unknown>).label"
             bg-color="dove-gray"
             class=""
             density="compact"
@@ -25,6 +26,7 @@
         </v-col>
         <v-col cols="7" md="7" sm="">
           <v-text-field
+            v-model="(element.properties as Record<string, unknown>).description"
             bg-color="dove-gray"
             class=""
             density="compact"
@@ -39,6 +41,7 @@
         </v-col>
         <v-col cols="7" md="7" sm="">
           <v-text-field
+            v-model="(element.properties as Record<string, unknown>).placeholder"
             bg-color="dove-gray"
             class=""
             color="mine-shaft"

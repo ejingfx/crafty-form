@@ -7,7 +7,7 @@
       size="x-large"
       variant="flat"
     >
-      {{ props.data.options.label }}
+      {{ props.data.properties.label }}
     </v-btn>
   </v-card>
 </template>
