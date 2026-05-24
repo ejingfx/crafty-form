@@ -32,6 +32,7 @@ declare module 'vue' {
     BuilderLayoutPanel: typeof import('./src/components/builder/BuilderLayoutPanel.vue')['default']
     BuilderLogicPanel: typeof import('./src/components/builder/BuilderLogicPanel.vue')['default']
     BuilderNavigation: typeof import('./src/components/builder/BuilderNavigation.vue')['default']
+    BuilderNoRecord: typeof import('./src/components/builder/BuilderNoRecord.vue')['default']
     BuilderPanel: typeof import('./src/components/builder/BuilderPanel.vue')['default']
     BuilderPropertiesPanel: typeof import('./src/components/builder/BuilderPropertiesPanel.vue')['default']
     BuilderSearch: typeof import('./src/components/BuilderSearch.vue')['default']

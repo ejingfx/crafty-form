@@ -19,8 +19,6 @@
         />
         <strong class="d-flex justify-center align-center" flat>{{ title }}</strong>
 
-        <v-spacer />
-
         <v-btn-group
           class="px-6 rounded-0"
         >
@@ -42,6 +40,9 @@
             variant="plain"
             @click="remove(index as number)"
           />
+        </v-btn-group>
+        <v-spacer />
+        <v-btn-group>
           <v-btn
             color="white"
             density="compact"
